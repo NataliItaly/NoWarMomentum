@@ -8,8 +8,25 @@ function showTime() {
   setTimeout(showTime, 1000);
   showDate();
   showGreeting();
+  setWarDays();
 }
 showTime();
+
+/*---------------set war's days------------------ */
+
+function setWarDays() {
+  let todayDay = new Date(2022, 8, 2);
+  let timeToday = todayDay.getTime();
+  console.log(todayDay.getTime());
+  let warDay = new Date(2022, 1, 24);
+  let timeWar = warDay.getTime();
+  let diffWarToday = timeToday - timeWar;
+  console.log(diffWarToday);
+
+  realDiff = Math.floor(diffWarToday / (1000 * 60 * 60 * 24));
+  console.log(realDiff);
+  warsDayCount.textContent = realDiff;
+}
 
 function showDate() {
   const date = new Date();

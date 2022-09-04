@@ -15,7 +15,7 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background: url("../assets/bg-webp/34.webp") center/cover, rgba(0, 0, 0, 0.5);
+  background: url("../assets/bg-images/1.jpg") center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
 }
