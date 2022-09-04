@@ -10,15 +10,18 @@
   </head>
   <body>
     <header class="header">
-      <div class="player">
-        <div class="player-controls">
-          <button class="play-prev player-icon"></button>
-          <button class="play player-icon"></button>
-          <button class="play-next player-icon"></button>
-        </div>
-        <button class="show-playlist"></button>
-        <div class="playlist-wrapper">
-          <ul class="play-list"></ul>
+      <div class="player-wrapper">
+        <div class="player">
+          <div class="show-track"></div>
+          <div class="player-controls">
+            <button class="play-prev player-icon"></button>
+            <button class="play player-icon"></button>
+            <button class="play-next player-icon"></button>
+          </div>
+          <button class="show-playlist"></button>
+          <div class="playlist-wrapper">
+            <ul class="play-list"></ul>
+          </div>
         </div>
       </div>
       <div class="translation-block">
@@ -31,22 +34,27 @@
           <button class="translation-btn" data-language="it">it</button>
         </div>
       </div>
-      <div class="weather">
-        <input
-          type="text"
-          class="city"
-          placeholder="enter your city"
-          data-translation="city"
-        />
-        <button class="show-weather" data-translation="show-weather">
-          Show weather
-        </button>
-        <i class="weather-icon owf"></i>
-        <div class="weather-error"></div>
-        <div class="temperature"></div>
-        <div class="weather-description"></div>
-        <div class="wind"></div>
-        <div class="humidity"></div>
+      <div class="weather-block">
+        <button class="show-weather-block"></button>
+        <div class="weather">
+          <input
+            type="text"
+            class="city"
+            placeholder="enter your city"
+            data-translation="city"
+          />
+          <button class="show-weather" data-translation="show-weather">
+            Show weather
+          </button>
+          <div class="weather-wrapper">
+            <i class="weather-icon owf weather-item"></i>
+            <div class="weather-error"></div>
+            <div class="temperature weather-item"></div>
+            <div class="weather-description weather-item"></div>
+            <div class="wind weather-item"></div>
+            <div class="humidity weather-item"></div>
+          </div>
+        </div>
       </div>
     </header>
     <main class="main">

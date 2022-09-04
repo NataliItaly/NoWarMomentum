@@ -17,15 +17,17 @@ showTime();
 function setWarDays() {
   let todayDay = new Date(2022, 8, 2);
   let timeToday = todayDay.getTime();
-  console.log(todayDay.getTime());
   let warDay = new Date(2022, 1, 24);
   let timeWar = warDay.getTime();
   let diffWarToday = timeToday - timeWar;
-  console.log(diffWarToday);
+  let realDiff = Math.floor(diffWarToday / (1000 * 60 * 60 * 24));
+  let activeLanguage = document.querySelector(".active-language");
+  let language = activeLanguage.dataset.language;
 
-  realDiff = Math.floor(diffWarToday / (1000 * 60 * 60 * 24));
-  console.log(realDiff);
   warsDayCount.textContent = realDiff;
+  if (language === "en") {
+    warsDayCount.textContent = `the ${realDiff}nth`;
+  }
 }
 
 function showDate() {
@@ -64,7 +66,6 @@ function showGreeting() {
   }
 
   GREETING.textContent = greetingText;
-  //const userName = nameInput.value;
 }
 
 function setGreetings() {
@@ -117,32 +118,6 @@ function setGreetings() {
     }
   }
 }
-
-/*---------------- set the war's day count ------------- */
-
-function getNumberOfDays(start, end) {
-  const date1 = new Date(start);
-  const date2 = new Date(end);
-
-  // One day in milliseconds
-  const oneDay = 1000 * 60 * 60 * 24;
-
-  // Calculating the time difference between two dates
-  const diffInTime = date2.getTime() - date1.getTime();
-
-  // Calculating the no. of days between two dates
-  const diffInDays = Math.round(diffInTime / oneDay);
-
-  let activeLanguage = document.querySelector(".active-language");
-  let language = activeLanguage.dataset.language;
-  console.log(language);
-  warsDayCount.textContent = diffInDays;
-  if (language === "en") {
-    warsDayCount.textContent = `the ${diffInDays}nth`;
-  }
-}
-
-getNumberOfDays("2/24/2022", "8/8/2022");
 
 /*--------------- set local storage ---------------- */
 
@@ -214,6 +189,10 @@ function getSlidePrev() {
 
 /*------------------- set weather ------------------ */
 
+showWeatherBlock.addEventListener("click", function () {
+  weather.classList.toggle("open");
+});
+
 //let weather = `https://api.openweathermap.org/data/2.5/weather?q=Florence&lang=en&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
 //console.log(weather);
 
@@ -223,28 +202,47 @@ async function getWeather() {
   let cityName = cityInput.value;
   let activeLanguage = document.querySelector(".active-language");
   let language = activeLanguage.dataset.language;
-  console.log(language);
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${language}&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
-  console.log(url);
-  const res = await fetch(url);
-  const data = await res.json();
-  console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+  try {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${language}&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
+    console.log(url);
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(
+      data.weather[0].id,
+      data.weather[0].description,
+      data.main.temp
+    );
 
-  weatherIcon.className = "weather-icon owf";
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${data.main.temp}°C`;
-  weatherDescription.textContent = data.weather[0].description;
-  wind.textContent = `Wind speed: ${data.wind.speed} m/s`;
-  humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    weatherIcon.className = "weather-icon owf";
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${data.main.temp}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    wind.textContent = `Wind speed: ${data.wind.speed} m/s`;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
 
-  if (language === "ru") {
-    wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
-    humidity.textContent = `Влажность воздуха: ${data.main.humidity}%`;
-  } else if (language === "it") {
-    wind.textContent = `Vento: ${data.wind.speed} m/s`;
-    humidity.textContent = `Umidità: ${data.main.humidity}%`;
+    if (weatherError.textContent) weatherError.textContent = "";
+
+    if (language === "ru") {
+      wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
+      humidity.textContent = `Влажность воздуха: ${data.main.humidity}%`;
+    } else if (language === "it") {
+      wind.textContent = `Vento: ${data.wind.speed} m/s`;
+      humidity.textContent = `Umidità: ${data.main.humidity}%`;
+    }
+    isWeather = true;
+    weatherWrapper.classList.toggle("open");
+  } catch (error) {
+    weatherError.textContent = "Please enter valid city name";
+    if (language === "ru") {
+      weatherError.textContent = "Пожалуйста, введите верное название города";
+    } else if (language === "it") {
+      weatherError.textContent =
+        "Si prega di inserire il nome corretto della città";
+    }
   }
-  isWeather = true;
+  if (cityName === undefined) {
+    weatherError.textContent = "Please enter valid city name";
+  }
 }
 
 showWeather.addEventListener("click", getWeather);
@@ -290,6 +288,8 @@ let playNum = 0;
 const playItem = document.querySelectorAll(".play-item");
 playItem[playNum].classList.add("active");
 
+showTrack.textContent = document.querySelector(".active").textContent;
+
 const audio = new Audio();
 function playAudio() {
   if (!isPlay) {
@@ -314,6 +314,7 @@ function playNext() {
   }
   playItem.forEach((item) => item.classList.remove("active"));
   playItem[playNum].classList.add("active");
+  showTrack.textContent = document.querySelector(".active").textContent;
   if (isPlay === true) {
     audio.src = trackList[playNum].src;
     audio.currentTime = 0;
@@ -330,6 +331,7 @@ function playPrev() {
   }
   playItem.forEach((item) => item.classList.remove("active"));
   playItem[playNum].classList.add("active");
+  showTrack.textContent = document.querySelector(".active").textContent;
   if (isPlay === true) {
     audio.src = trackList[playNum].src;
     audio.currentTime = 0;
@@ -343,6 +345,7 @@ for (let i = 0; i < playItem.length; i++) {
   playItem[i].addEventListener("click", function choosePlayItem() {
     playItem.forEach((item) => item.classList.remove("active"));
     playItem[i].classList.add("active");
+    showTrack.textContent = document.querySelector(".active").textContent;
     playNum = i;
     if (isPlay === true) {
       audio.src = trackList[playNum].src;
@@ -362,5 +365,6 @@ showPlaylistBtn.addEventListener("click", function () {
 /*-------------------------------------------------------------------------------- */
 
 changeLanguageBtn.addEventListener("click", function () {
-  translationBtnWrapper.classList.toggle("open");
+  translationBtn.forEach((item) => item.classList.toggle("open"));
+  //translationBtn.classList.toggle("open");
 });

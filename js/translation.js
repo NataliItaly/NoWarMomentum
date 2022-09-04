@@ -32,7 +32,7 @@ const translationObj = {
     "all-pictures": "Tutte le foto sono prese da fonti aperte",
   },
 };
-const translationBtn = document.querySelectorAll(".translation-btn");
+
 const translationWrapper = document.querySelector(".translation-btn-wrapper");
 const translationText = document.querySelectorAll("[data-translation]");
 

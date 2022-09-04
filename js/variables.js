@@ -6,16 +6,21 @@ const nameInput = document.querySelector(".name");
 const BODY = document.querySelector("body");
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
+const showWeatherBlock = document.querySelector(".show-weather-block");
 const showWeather = document.querySelector(".show-weather");
+const weatherWrapper = document.querySelector(".weather-wrapper");
+const weather = document.querySelector(".weather");
 const weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
 const weatherDescription = document.querySelector(".weather-description");
 const wind = document.querySelector(".wind");
 const humidity = document.querySelector(".humidity");
 const cityInput = document.querySelector(".city");
+const weatherError = document.querySelector(".weather-error");
 const QUOTE = document.querySelector(".quote");
 const AUTHOR = document.querySelector(".author");
 const changeQuote = document.querySelector(".change-quote");
+const showTrack = document.querySelector(".show-track");
 const showPlaylistBtn = document.querySelector(".show-playlist");
 const playBtn = document.querySelector(".play");
 const playList = document.querySelector(".play-list");
@@ -25,6 +30,7 @@ const changeLanguageBtn = document.querySelector(".change-language-btn");
 const translationBtnWrapper = document.querySelector(
   ".translation-btn-wrapper"
 );
+const translationBtn = document.querySelectorAll(".translation-btn");
 const quotes = {
   it: [
     {
@@ -283,7 +289,7 @@ const trackList = [
     src: "assets/sounds/Rob D  Clubbed To Death.mp3",
   },
   {
-    title: "Okean Eelzi Obiymi mene",
+    title: "Okean Elzi Obiymi mene",
     src: "assets/sounds/Okean Eelzi Obiymi mene.mp3",
   },
   {
@@ -291,7 +297,7 @@ const trackList = [
     src: "assets/sounds/The Prodigy Voodoo people.mp3",
   },
   {
-    title: "Okean Elz Ne tvoya viyna",
+    title: "Okean Elzi Ne tvoya viyna",
     src: "assets/sounds/Okean Elz Ne tvoya viyna.mp3",
   },
   {
