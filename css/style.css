@@ -30,6 +30,11 @@ body {
   padding: 20px 20px 0;
 }
 
+.player-wrapper {
+  position: relative;
+  z-index: 150;
+}
+
 .player {
   display: flex;
   justify-content: space-between;
@@ -361,7 +366,8 @@ body {
   width: 100%;
   min-height: 260px;
   padding: 0 20px 20px;
-  transform: translateY(-200px);
+  /* transform: translateY(-200px); */
+  margin-top: -200px;
 }
 
 .slider-icon {
@@ -401,7 +407,7 @@ body {
 
 .last-day {
   font-size: 28px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: aquamarine;
 }
 
@@ -411,7 +417,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 28px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .greeting {
@@ -445,11 +451,11 @@ body {
   width: 100%;
   min-height: 160px;
   padding: 0px 20px 10px;
-  margin-top: -200px;
+  /* margin-top: -200px; */
 }
 
 .change-quote {
-  margin-bottom: 20px;
+  margin-bottom: 7px;
   background-image: url("../assets/svg/reload.svg");
 }
 
@@ -537,8 +543,6 @@ body {
   }
   .player-wrapper {
     order: 2;
-    align-self: center;
-    margin: 0 auto;
     transform: translateY(-80px);
   }
 }
@@ -607,15 +611,12 @@ body {
     margin-bottom: 15px;
     row-gap: 4px;
   }
-  .main {
+  /* .main {
     transform: translateY(-190px);
-  }
+  } */
 }
 
 @media (max-width: 480px) {
-  .footer {
-    padding-top: 0;
-  }
   .weather {
     order: 1;
     row-gap: 7px;
@@ -628,6 +629,9 @@ body {
   }
   .name::placeholder {
     font-size: 20px;
+  }
+  .all-pictures {
+    font-size: 15px;
   }
 }
 
