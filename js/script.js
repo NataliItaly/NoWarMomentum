@@ -2,7 +2,6 @@
 
 function showTime() {
   const date = new Date();
-  //console.log(date);
   const currentTime = date.toLocaleTimeString();
   TIME.textContent = currentTime;
   setTimeout(showTime, 1000);
@@ -119,16 +118,18 @@ function setGreetings() {
   }
 }
 
+/*-------------------------------------------------- */
+
 /*--------------- set local storage ---------------- */
 
 function setLocalStorage() {
-  localStorage.setItem("nameInput", nameInput.value);
+  localStorage.setItem("cityInput", cityInput.value);
 }
 window.addEventListener("beforeunload", setLocalStorage);
 
 function getLocalStorage() {
-  if (localStorage.getItem("nameInput")) {
-    nameInput.value = localStorage.getItem("nameInput");
+  if (localStorage.getItem("cityInput")) {
+    cityInput.value = localStorage.getItem("cityInput");
   }
 }
 window.addEventListener("load", getLocalStorage);
@@ -155,10 +156,8 @@ function getRandomNum(min, max) {
 }
 
 let pictureNumber = getRandomNum(1, 91);
-//let pictureNumber = 1;
 
 function setBackground() {
-  //randomNumber = getRandomNum(1, 92);
   const img = new Image();
   img.src = `assets/bg-images/${pictureNumber}.jpg`;
   img.onload = () => {
@@ -207,9 +206,6 @@ showWeatherBlock.addEventListener("click", function () {
   weather.classList.toggle("open-weather");
 });
 
-//let weather = `https://api.openweathermap.org/data/2.5/weather?q=Florence&lang=en&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
-//console.log(weather);
-
 let isWeather = false;
 
 async function getWeather() {
@@ -221,11 +217,6 @@ async function getWeather() {
     console.log(url);
     const res = await fetch(url);
     const data = await res.json();
-    /* console.log(
-      data.weather[0].id,
-      data.weather[0].description,
-      data.main.temp
-    ); */
 
     weatherIcon.className = "weather-icon owf";
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
@@ -245,7 +236,6 @@ async function getWeather() {
     }
     isWeather = true;
     weatherWrapper.classList.add("open-forecast");
-    //showWeather.textContent = "Hide the weather";
   } catch (error) {
     weatherError.textContent = "Please enter valid city name";
     if (language === "ru") {
@@ -386,5 +376,4 @@ showPlaylistBtn.addEventListener("click", function () {
 
 changeLanguageBtn.addEventListener("click", function () {
   translationBtn.forEach((item) => item.classList.toggle("open"));
-  //translationBtn.classList.toggle("open");
 });

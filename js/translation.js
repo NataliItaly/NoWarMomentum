@@ -8,6 +8,7 @@ const translationObj = {
     "wish-peace": "Peaceful skies over you, ",
     "show-weather": "Show weather",
     "all-pictures": "All photos are taken from open sources",
+    name: "Human",
   },
   ru: {
     city: "введите ваш город",
@@ -19,6 +20,7 @@ const translationObj = {
     "wish-peace": "Мирного неба тебе, ",
     "show-weather": "Показать погоду",
     "all-pictures": "Все фото взяты из открытых источников",
+    name: "Человек",
   },
   it: {
     city: "inserisci la tua città",
@@ -30,6 +32,7 @@ const translationObj = {
     "wish-peace": "Pace sia con te, ",
     "show-weather": "Mostra meteo",
     "all-pictures": "Tutte le foto sono prese da fonti aperte",
+    name: "Essere umano",
   },
 };
 

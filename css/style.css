@@ -360,7 +360,7 @@ body {
   align-items: center;
   width: 100%;
   min-height: 260px;
-  padding: 0 20 20px;
+  padding: 0 20px 20px;
   transform: translateY(-200px);
 }
 
@@ -410,7 +410,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   font-size: 28px;
   margin-bottom: 30px;
 }
@@ -431,7 +430,6 @@ body {
   background-color: transparent;
   border: 0;
   outline: 0;
-  font-style: italic;
 }
 
 .name::placeholder {
@@ -469,8 +467,8 @@ body {
 
 .all-pictures {
   margin-top: 10px;
-  letter-spacing: 2px;
-  font-size: 15px;
+  letter-spacing: 3px;
+  font-size: 17px;
   color: #ff5e00;
 }
 
