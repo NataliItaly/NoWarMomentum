@@ -46,6 +46,7 @@ translationWrapper.addEventListener("click", function (event) {
     QUOTE.textContent = quotes[language][randomQuote].text;
     AUTHOR.textContent = quotes[language][randomQuote].author;
 
+    console.log(isWeather);
     if (isWeather) {
       getWeather();
     }

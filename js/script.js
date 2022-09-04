@@ -154,7 +154,8 @@ function getRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let pictureNumber = 1;
+let pictureNumber = getRandomNum(1, 91);
+//let pictureNumber = 1;
 
 function setBackground() {
   //randomNumber = getRandomNum(1, 92);
@@ -164,6 +165,18 @@ function setBackground() {
     BODY.style.backgroundImage = `url('assets/bg-images/${pictureNumber}.jpg')`;
   };
 }
+setBackground();
+
+function setSliderLoop() {
+  setTimeout(setSliderLoop, 1500);
+  pictureNumber++;
+  if (pictureNumber >= 92) {
+    pictureNumber = 1;
+  }
+  setBackground();
+}
+
+setSliderLoop();
 
 /*-------------------- set slider ---------------------- */
 
@@ -171,7 +184,7 @@ slideNext.addEventListener("click", getSlideNext);
 
 function getSlideNext() {
   pictureNumber += 1;
-  if (pictureNumber >= 93) {
+  if (pictureNumber >= 92) {
     pictureNumber = 1;
   }
   setBackground();
@@ -182,15 +195,16 @@ slidePrev.addEventListener("click", getSlidePrev);
 function getSlidePrev() {
   pictureNumber -= 1;
   if (pictureNumber <= 0) {
-    pictureNumber = 92;
+    pictureNumber = 91;
   }
   setBackground();
+  console.log("?");
 }
 
 /*------------------- set weather ------------------ */
 
 showWeatherBlock.addEventListener("click", function () {
-  weather.classList.toggle("open");
+  weather.classList.toggle("open-weather");
 });
 
 //let weather = `https://api.openweathermap.org/data/2.5/weather?q=Florence&lang=en&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
@@ -207,11 +221,11 @@ async function getWeather() {
     console.log(url);
     const res = await fetch(url);
     const data = await res.json();
-    console.log(
+    /* console.log(
       data.weather[0].id,
       data.weather[0].description,
       data.main.temp
-    );
+    ); */
 
     weatherIcon.className = "weather-icon owf";
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
@@ -230,7 +244,8 @@ async function getWeather() {
       humidity.textContent = `Umidità: ${data.main.humidity}%`;
     }
     isWeather = true;
-    weatherWrapper.classList.toggle("open");
+    weatherWrapper.classList.add("open-forecast");
+    //showWeather.textContent = "Hide the weather";
   } catch (error) {
     weatherError.textContent = "Please enter valid city name";
     if (language === "ru") {

@@ -287,7 +287,7 @@ body {
   transition: opacity 0.7s;
 }
 
-.weather.open {
+.weather.open-weather {
   opacity: 1;
   background-color: rgba(116, 104, 104, 0.9);
   border-radius: 15px;
@@ -309,6 +309,7 @@ body {
   flex-direction: column;
   transition: opacity 0.7s;
   border-radius: 15px;
+  font-size: 14px;
   padding: 0 10px;
 }
 
@@ -365,7 +366,7 @@ body {
 
 .slider-icon {
   position: absolute;
-  top: 30%;
+  top: 55%;
   margin-top: -16px;
   cursor: pointer;
 }
@@ -483,7 +484,7 @@ body {
     z-index: 20;
     opacity: 0;
   }
-  .weather-wrapper.open {
+  .weather-wrapper.open-forecast {
     opacity: 1;
   }
   .city::placeholder {
