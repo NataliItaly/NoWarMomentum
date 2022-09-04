@@ -169,7 +169,7 @@ setBackground();
 function setSliderLoop() {
   setTimeout(setSliderLoop, 1500);
   pictureNumber++;
-  if (pictureNumber >= 92) {
+  if (pictureNumber >= 93) {
     pictureNumber = 1;
   }
   setBackground();
@@ -179,7 +179,7 @@ setSliderLoop();
 
 /*-------------------- set slider ---------------------- */
 
-slideNext.addEventListener("click", getSlideNext);
+/* slideNext.addEventListener("click", getSlideNext);
 
 function getSlideNext() {
   pictureNumber += 1;
@@ -198,7 +198,7 @@ function getSlidePrev() {
   }
   setBackground();
   console.log("?");
-}
+} */
 
 /*------------------- set weather ------------------ */
 

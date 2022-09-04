@@ -105,7 +105,6 @@ body {
 }
 
 .player-icon,
-.slider-icon,
 .change-quote {
   width: 32px;
   height: 32px;
@@ -121,13 +120,11 @@ body {
 }
 
 .player-icon:hover,
-.slider-icon:hover,
 .change-quote:hover {
   opacity: 1;
 }
 
 .player-icon:active,
-.slider-icon:active,
 .change-quote:active {
   border: 0;
   outline: 0;
@@ -370,12 +367,12 @@ body {
   margin-top: -200px;
 }
 
-.slider-icon {
+/* .slider-icon {
   position: absolute;
   top: 55%;
   margin-top: -16px;
   cursor: pointer;
-}
+} */
 
 .slide-prev {
   left: 20px;
@@ -503,9 +500,6 @@ body {
   .translation-btn-wrapper {
     margin-bottom: 0;
     justify-content: flex-start;
-  }
-  .slider-icon {
-    top: 46px;
   }
 }
 
