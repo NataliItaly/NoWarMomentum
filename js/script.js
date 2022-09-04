@@ -239,6 +239,11 @@ async function getWeather() {
       weatherError.textContent =
         "Si prega di inserire il nome corretto della città";
     }
+    temperature.textContent = "";
+    humidity.textContent = "";
+    weatherDescription.textContent = "";
+    wind.textContent = "";
+    weatherIcon.style.display = "none";
   }
   if (cityName === undefined) {
     weatherError.textContent = "Please enter valid city name";

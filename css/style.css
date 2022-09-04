@@ -270,6 +270,7 @@ body {
 
 .weather-block {
   text-align: right;
+  border-radius: 15px;
 }
 
 .weather {
@@ -288,6 +289,8 @@ body {
 
 .weather.open {
   opacity: 1;
+  background-color: rgba(116, 104, 104, 0.9);
+  border-radius: 15px;
 }
 
 .show-weather {
@@ -305,6 +308,8 @@ body {
   display: flex;
   flex-direction: column;
   transition: opacity 0.7s;
+  border-radius: 15px;
+  padding: 0 10px;
 }
 
 .weather-item {
@@ -469,17 +474,11 @@ body {
 }
 
 @media (max-width: 910px) {
-  .player-wrapper {
-    /*  order: 2;
-    width: 100%;
-    transform: translateY(-50px); */
-  }
   .show-playlist {
     margin-left: 20px;
   }
   .weather-wrapper {
     background-color: rgba(116, 104, 104, 0.9);
-    border-radius: 15px;
     position: relative;
     z-index: 20;
     opacity: 0;
@@ -527,6 +526,24 @@ body {
   }
 }
 
+@media (max-width: 580px) {
+  .header {
+    padding: 15px 15px 0;
+  }
+  .translation-block {
+    flex-direction: row;
+  }
+  .weather-block {
+    order: -1;
+  }
+  .player-wrapper {
+    order: 2;
+    align-self: center;
+    margin: 0 auto;
+    transform: translateY(-80px);
+  }
+}
+
 @media (max-width: 560px) {
   .header {
     padding: 15px 10px 0;
@@ -545,6 +562,7 @@ body {
     left: 4px;
   }
   .weather {
+    order: 0;
     width: 180px;
   }
   .show-weather {
@@ -582,9 +600,6 @@ body {
 @media (max-width: 519px) {
   .header {
     flex-wrap: wrap;
-  }
-  .player-wrapper {
-    order: 2;
   }
   .weather {
     margin-bottom: 15px;
@@ -630,6 +645,18 @@ body {
   }
 }
 
+@media (max-width: 390px) {
+  .header {
+    padding: 15px 10px 0;
+  }
+  .translation-btn {
+    width: 30px;
+  }
+  .translation-block {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 360px) {
   .greeting {
     font-size: 40px;
@@ -657,5 +684,11 @@ body {
   }
   .quote {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 319px) {
+  .weather {
+    width: 175px;
   }
 }
