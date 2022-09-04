@@ -566,6 +566,9 @@ body {
     order: 0;
     width: 180px;
   }
+  .weather-wrapper {
+    font-size: 13px;
+  }
   .show-weather {
     width: 100%;
   }
