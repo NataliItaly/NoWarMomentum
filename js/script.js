@@ -14,12 +14,12 @@ showTime();
 /*---------------set war's days------------------ */
 
 function setWarDays() {
-  let todayDay = new Date(2022, 8, 2);
+  let todayDay = new Date();
   let timeToday = todayDay.getTime();
   let warDay = new Date(2022, 1, 24);
   let timeWar = warDay.getTime();
   let diffWarToday = timeToday - timeWar;
-  let realDiff = Math.floor(diffWarToday / (1000 * 60 * 60 * 24));
+  let realDiff = Math.ceil(diffWarToday / (1000 * 60 * 60 * 24));
   let activeLanguage = document.querySelector(".active-language");
   let language = activeLanguage.dataset.language;
 
@@ -37,6 +37,18 @@ function showDate() {
     day: "numeric",
     timeZone: "UTC",
   };
+
+  /*function getWarDays() {
+  let today = new Date();
+  console.log(today);
+  let warBegin = new Date(2022, 1, 24, 0, 0, 0);
+  console.log(warBegin);
+  console.log(today.getTime());
+  console.log(warBegin.getTime());
+  console.log(
+    Math.ceil((today.getTime() - warBegin.getTime()) / (1000 * 60 * 60 * 24))
+  );
+} */
 
   let currentDate = date.toLocaleDateString("en-Br", options);
   let activeLanguage = document.querySelector(".active-language");
