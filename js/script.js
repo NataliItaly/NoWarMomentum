@@ -23,10 +23,7 @@ function setWarDays() {
   let activeLanguage = document.querySelector('.active-language');
   let language = activeLanguage.dataset.language;
 
-  warsDayCount.textContent = realDiff;
-  if (language === 'en') {
-    warsDayCount.textContent = `the ${realDiff}nth`;
-  }
+   warsDayCount.textContent =  language === 'en' ? `the ${realDiff}nth` : realDiff;
 }
 
 function showDate() {
@@ -38,17 +35,6 @@ function showDate() {
     timeZone: 'UTC',
   };
 
-  /*function getWarDays() {
-  let today = new Date();
-  console.log(today);
-  let warBegin = new Date(2022, 1, 24, 0, 0, 0);
-  console.log(warBegin);
-  console.log(today.getTime());
-  console.log(warBegin.getTime());
-  console.log(
-    Math.ceil((today.getTime() - warBegin.getTime()) / (1000 * 60 * 60 * 24))
-  );
-} */
 
   let currentDate = date.toLocaleDateString('en-Br', options);
   let activeLanguage = document.querySelector('.active-language');
@@ -130,8 +116,6 @@ function setGreetings() {
   }
 }
 
-/*-------------------------------------------------- */
-
 /*--------------- set local storage ---------------- */
 
 function setLocalStorage() {
@@ -189,28 +173,6 @@ function setSliderLoop() {
 
 //setSliderLoop();
 
-/*-------------------- set slider ---------------------- */
-
-/* slideNext.addEventListener("click", getSlideNext);
-
-function getSlideNext() {
-  pictureNumber += 1;
-  if (pictureNumber >= 92) {
-    pictureNumber = 1;
-  }
-  setBackground();
-}
-
-slidePrev.addEventListener("click", getSlidePrev);
-
-function getSlidePrev() {
-  pictureNumber -= 1;
-  if (pictureNumber <= 0) {
-    pictureNumber = 91;
-  }
-  setBackground();
-  console.log("?");
-} */
 
 /*------------------- set weather ------------------ */
 
@@ -298,37 +260,39 @@ changeQuote.addEventListener('click', getQuotes);
 
 /*------------------ set player -------------------- */
 
-for (let i = 0; i < trackList.length; i++) {
+/*for (let i = 0; i < trackList.length; i++) {
   const li = document.createElement('li');
   li.classList.add('play-item');
   li.textContent = trackList[i].title;
   playList.append(li);
-}
+}*/
 
 let isPlay = false;
-let playNum = 0;
+/*let playNum = 0;
 const playItem = document.querySelectorAll('.play-item');
 playItem[playNum].classList.add('active');
 
-showTrack.textContent = document.querySelector('.active').textContent;
+showTrack.textContent = document.querySelector('.active').textContent;*/
 
 const audio = new Audio();
 function playAudio() {
   if (!isPlay) {
-    audio.src = trackList[playNum].src;
+    audio.src = 'assets/sounds/Rob D  Clubbed To Death.mp3';
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
     playBtn.classList.add('pause');
+    playBtn.textContent = '';
   } else {
     audio.pause();
     isPlay = false;
     playBtn.classList.remove('pause');
+    playBtn.textContent = 'Listen';
   }
 }
 playBtn.addEventListener('click', playAudio);
 
-function playNext() {
+/*function playNext() {
   playNum += 1;
 
   if (playNum >= trackList.length) {
@@ -342,11 +306,11 @@ function playNext() {
     audio.currentTime = 0;
     audio.play();
   }
-}
+}*/
 
-playNextBtn.addEventListener('click', playNext);
+// playNextBtn.addEventListener('click', playNext);
 
-function playPrev() {
+/*function playPrev() {
   playNum -= 1;
   if (playNum < 0) {
     playNum = trackList.length - 1;
@@ -359,11 +323,11 @@ function playPrev() {
     audio.currentTime = 0;
     audio.play();
   }
-}
+}*/
 
-playPrevBtn.addEventListener('click', playPrev);
+// playPrevBtn.addEventListener('click', playPrev);
 
-for (let i = 0; i < playItem.length; i++) {
+/*for (let i = 0; i < playItem.length; i++) {
   playItem[i].addEventListener('click', function choosePlayItem() {
     playItem.forEach((item) => item.classList.remove('active'));
     playItem[i].classList.add('active');
@@ -375,14 +339,14 @@ for (let i = 0; i < playItem.length; i++) {
       audio.play();
     }
   });
-}
+}*/
 
 /*------------------------------------------------------------------------------- */
 
-showPlaylistBtn.addEventListener('click', function () {
+/*showPlaylistBtn.addEventListener('click', function () {
   showPlaylistBtn.classList.toggle('open');
   playList.classList.toggle('open');
-});
+});*/
 
 /*-------------------------------------------------------------------------------- */
 
