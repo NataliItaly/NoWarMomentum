@@ -20,11 +20,11 @@ function setWarDays() {
   let timeWar = warDay.getTime();
   let diffWarToday = timeToday - timeWar;
   let realDiff = Math.ceil(diffWarToday / (1000 * 60 * 60 * 24));
-  let activeLanguage = document.querySelector(".active-language");
+  let activeLanguage = document.querySelector('.active-language');
   let language = activeLanguage.dataset.language;
 
   warsDayCount.textContent = realDiff;
-  if (language === "en") {
+  if (language === 'en') {
     warsDayCount.textContent = `the ${realDiff}nth`;
   }
 }
@@ -32,10 +32,10 @@ function setWarDays() {
 function showDate() {
   const date = new Date();
   const options = {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    timeZone: "UTC",
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
   };
 
   /*function getWarDays() {
@@ -50,12 +50,12 @@ function showDate() {
   );
 } */
 
-  let currentDate = date.toLocaleDateString("en-Br", options);
-  let activeLanguage = document.querySelector(".active-language");
-  if (activeLanguage.dataset.language === "ru") {
-    currentDate = date.toLocaleDateString("ru-Ru", options);
-  } else if (activeLanguage.dataset.language === "it") {
-    currentDate = date.toLocaleDateString("it-It", options);
+  let currentDate = date.toLocaleDateString('en-Br', options);
+  let activeLanguage = document.querySelector('.active-language');
+  if (activeLanguage.dataset.language === 'ru') {
+    currentDate = date.toLocaleDateString('ru-Ru', options);
+  } else if (activeLanguage.dataset.language === 'it') {
+    currentDate = date.toLocaleDateString('it-It', options);
   }
 
   DATE.textContent = currentDate;
@@ -68,11 +68,11 @@ function showGreeting() {
   const hours = date.getHours();
   const timeOfDay = setGreetings();
 
-  let activeLanguage = document.querySelector(".active-language");
+  let activeLanguage = document.querySelector('.active-language');
   let greetingText = `Good${timeOfDay}`;
-  if (activeLanguage.dataset.language === "ru") {
+  if (activeLanguage.dataset.language === 'ru') {
     greetingText = `Добр${timeOfDay}`;
-  } else if (activeLanguage.dataset.language === "it") {
+  } else if (activeLanguage.dataset.language === 'it') {
     greetingText = `Buon${timeOfDay}`;
   }
 
@@ -82,13 +82,13 @@ function showGreeting() {
 function setGreetings() {
   const date = new Date();
   const hours = date.getHours();
-  let activeLanguage = document.querySelector(".active-language");
+  let activeLanguage = document.querySelector('.active-language');
   if (hours >= 23 || hours < 5) {
     switch (activeLanguage.dataset.language) {
-      case "ru":
+      case 'ru':
         return `ой ночи`;
         break;
-      case "it":
+      case 'it':
         return `a notte`;
         break;
       default:
@@ -96,10 +96,10 @@ function setGreetings() {
     }
   } else if (hours >= 5 && hours <= 11) {
     switch (activeLanguage.dataset.language) {
-      case "ru":
+      case 'ru':
         return `ое утро`;
         break;
-      case "it":
+      case 'it':
         return `a mattina`;
         break;
       default:
@@ -107,10 +107,10 @@ function setGreetings() {
     }
   } else if (hours > 11 && hours <= 17) {
     switch (activeLanguage.dataset.language) {
-      case "ru":
+      case 'ru':
         return `ый день`;
         break;
-      case "it":
+      case 'it':
         return ` giorno`;
         break;
       default:
@@ -118,10 +118,10 @@ function setGreetings() {
     }
   } else if (hours > 17 && hours < 23) {
     switch (activeLanguage.dataset.language) {
-      case "ru":
+      case 'ru':
         return `ый вечер`;
         break;
-      case "it":
+      case 'it':
         return `a sera`;
         break;
       default:
@@ -135,16 +135,16 @@ function setGreetings() {
 /*--------------- set local storage ---------------- */
 
 function setLocalStorage() {
-  localStorage.setItem("cityInput", cityInput.value);
+  localStorage.setItem('cityInput', cityInput.value);
 }
-window.addEventListener("beforeunload", setLocalStorage);
+window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
-  if (localStorage.getItem("cityInput")) {
-    cityInput.value = localStorage.getItem("cityInput");
+  if (localStorage.getItem('cityInput')) {
+    cityInput.value = localStorage.getItem('cityInput');
   }
 }
-window.addEventListener("load", getLocalStorage);
+window.addEventListener('load', getLocalStorage);
 
 /*--------------- set background ------------------ */
 
@@ -181,13 +181,13 @@ setBackground();
 function setSliderLoop() {
   setTimeout(setSliderLoop, 1500);
   pictureNumber++;
-  if (pictureNumber >= 93) {
-    pictureNumber = 1;
+  if (pictureNumber >= 65) {
+    pictureNumber = 0;
   }
   setBackground();
 }
 
-setSliderLoop();
+//setSliderLoop();
 
 /*-------------------- set slider ---------------------- */
 
@@ -214,15 +214,15 @@ function getSlidePrev() {
 
 /*------------------- set weather ------------------ */
 
-showWeatherBlock.addEventListener("click", function () {
-  weather.classList.toggle("open-weather");
+showWeatherBlock.addEventListener('click', function () {
+  weather.classList.toggle('open-weather');
 });
 
 let isWeather = false;
 
 async function getWeather() {
   let cityName = cityInput.value;
-  let activeLanguage = document.querySelector(".active-language");
+  let activeLanguage = document.querySelector('.active-language');
   let language = activeLanguage.dataset.language;
   try {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${language}&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
@@ -230,44 +230,44 @@ async function getWeather() {
     const res = await fetch(url);
     const data = await res.json();
 
-    weatherIcon.className = "weather-icon owf";
+    weatherIcon.className = 'weather-icon owf';
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${data.main.temp}°C`;
     weatherDescription.textContent = data.weather[0].description;
     wind.textContent = `Wind speed: ${data.wind.speed} m/s`;
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
 
-    if (weatherError.textContent) weatherError.textContent = "";
+    if (weatherError.textContent) weatherError.textContent = '';
 
-    if (language === "ru") {
+    if (language === 'ru') {
       wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
       humidity.textContent = `Влажность воздуха: ${data.main.humidity}%`;
-    } else if (language === "it") {
+    } else if (language === 'it') {
       wind.textContent = `Vento: ${data.wind.speed} m/s`;
       humidity.textContent = `Umidità: ${data.main.humidity}%`;
     }
     isWeather = true;
-    weatherWrapper.classList.add("open-forecast");
+    weatherWrapper.classList.add('open-forecast');
   } catch (error) {
-    weatherError.textContent = "Please enter valid city name";
-    if (language === "ru") {
-      weatherError.textContent = "Пожалуйста, введите верное название города";
-    } else if (language === "it") {
+    weatherError.textContent = 'Please enter valid city name';
+    if (language === 'ru') {
+      weatherError.textContent = 'Пожалуйста, введите верное название города';
+    } else if (language === 'it') {
       weatherError.textContent =
-        "Si prega di inserire il nome corretto della città";
+        'Si prega di inserire il nome corretto della città';
     }
-    temperature.textContent = "";
-    humidity.textContent = "";
-    weatherDescription.textContent = "";
-    wind.textContent = "";
-    weatherIcon.style.display = "none";
+    temperature.textContent = '';
+    humidity.textContent = '';
+    weatherDescription.textContent = '';
+    wind.textContent = '';
+    weatherIcon.style.display = 'none';
   }
   if (cityName === undefined) {
-    weatherError.textContent = "Please enter valid city name";
+    weatherError.textContent = 'Please enter valid city name';
   }
 }
 
-showWeather.addEventListener("click", getWeather);
+showWeather.addEventListener('click', getWeather);
 
 /*-------------------- set quotes -------------------- */
 
@@ -276,41 +276,41 @@ let randomQuote;
 function getQuotes() {
   randomQuote = getRandomNum(0, quotes.en.length - 1);
 
-  let activeLanguage = document.querySelector(".active-language");
+  let activeLanguage = document.querySelector('.active-language');
   switch (activeLanguage.dataset.language) {
-    case "ru":
+    case 'ru':
       QUOTE.textContent = quotes.ru[randomQuote].text;
-      AUTHOR.textContent = quotes.ru[randomQuote].author;
+      AUTHOR.textContent = quotes.ru[randomQuote].quote__author;
       break;
-    case "it":
+    case 'it':
       QUOTE.textContent = quotes.it[randomQuote].text;
-      AUTHOR.textContent = quotes.it[randomQuote].author;
+      AUTHOR.textContent = quotes.it[randomQuote].quote__author;
       break;
     default:
       QUOTE.textContent = quotes.en[randomQuote].text;
-      AUTHOR.textContent = quotes.en[randomQuote].author;
+      AUTHOR.textContent = quotes.en[randomQuote].quote__author;
   }
 }
 
 getQuotes();
 
-changeQuote.addEventListener("click", getQuotes);
+changeQuote.addEventListener('click', getQuotes);
 
 /*------------------ set player -------------------- */
 
 for (let i = 0; i < trackList.length; i++) {
-  const li = document.createElement("li");
-  li.classList.add("play-item");
+  const li = document.createElement('li');
+  li.classList.add('play-item');
   li.textContent = trackList[i].title;
   playList.append(li);
 }
 
 let isPlay = false;
 let playNum = 0;
-const playItem = document.querySelectorAll(".play-item");
-playItem[playNum].classList.add("active");
+const playItem = document.querySelectorAll('.play-item');
+playItem[playNum].classList.add('active');
 
-showTrack.textContent = document.querySelector(".active").textContent;
+showTrack.textContent = document.querySelector('.active').textContent;
 
 const audio = new Audio();
 function playAudio() {
@@ -319,14 +319,14 @@ function playAudio() {
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
-    playBtn.classList.add("pause");
+    playBtn.classList.add('pause');
   } else {
     audio.pause();
     isPlay = false;
-    playBtn.classList.remove("pause");
+    playBtn.classList.remove('pause');
   }
 }
-playBtn.addEventListener("click", playAudio);
+playBtn.addEventListener('click', playAudio);
 
 function playNext() {
   playNum += 1;
@@ -334,9 +334,9 @@ function playNext() {
   if (playNum >= trackList.length) {
     playNum = 0;
   }
-  playItem.forEach((item) => item.classList.remove("active"));
-  playItem[playNum].classList.add("active");
-  showTrack.textContent = document.querySelector(".active").textContent;
+  playItem.forEach((item) => item.classList.remove('active'));
+  playItem[playNum].classList.add('active');
+  showTrack.textContent = document.querySelector('.active').textContent;
   if (isPlay === true) {
     audio.src = trackList[playNum].src;
     audio.currentTime = 0;
@@ -344,16 +344,16 @@ function playNext() {
   }
 }
 
-playNextBtn.addEventListener("click", playNext);
+playNextBtn.addEventListener('click', playNext);
 
 function playPrev() {
   playNum -= 1;
   if (playNum < 0) {
     playNum = trackList.length - 1;
   }
-  playItem.forEach((item) => item.classList.remove("active"));
-  playItem[playNum].classList.add("active");
-  showTrack.textContent = document.querySelector(".active").textContent;
+  playItem.forEach((item) => item.classList.remove('active'));
+  playItem[playNum].classList.add('active');
+  showTrack.textContent = document.querySelector('.active').textContent;
   if (isPlay === true) {
     audio.src = trackList[playNum].src;
     audio.currentTime = 0;
@@ -361,13 +361,13 @@ function playPrev() {
   }
 }
 
-playPrevBtn.addEventListener("click", playPrev);
+playPrevBtn.addEventListener('click', playPrev);
 
 for (let i = 0; i < playItem.length; i++) {
-  playItem[i].addEventListener("click", function choosePlayItem() {
-    playItem.forEach((item) => item.classList.remove("active"));
-    playItem[i].classList.add("active");
-    showTrack.textContent = document.querySelector(".active").textContent;
+  playItem[i].addEventListener('click', function choosePlayItem() {
+    playItem.forEach((item) => item.classList.remove('active'));
+    playItem[i].classList.add('active');
+    showTrack.textContent = document.querySelector('.active').textContent;
     playNum = i;
     if (isPlay === true) {
       audio.src = trackList[playNum].src;
@@ -379,13 +379,13 @@ for (let i = 0; i < playItem.length; i++) {
 
 /*------------------------------------------------------------------------------- */
 
-showPlaylistBtn.addEventListener("click", function () {
-  showPlaylistBtn.classList.toggle("open");
-  playList.classList.toggle("open");
+showPlaylistBtn.addEventListener('click', function () {
+  showPlaylistBtn.classList.toggle('open');
+  playList.classList.toggle('open');
 });
 
 /*-------------------------------------------------------------------------------- */
 
-changeLanguageBtn.addEventListener("click", function () {
-  translationBtn.forEach((item) => item.classList.toggle("open"));
+changeLanguageBtn.addEventListener('click', function () {
+  translationBtn.forEach((item) => item.classList.toggle('open'));
 });
