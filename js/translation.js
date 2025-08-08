@@ -51,7 +51,7 @@ translationWrapper.addEventListener('click', function (event) {
 
     console.log(isWeather);
     if (isWeather) {
-      getWeather();
+      getWeather(event);
     }
 
     translationText.forEach((item) => {

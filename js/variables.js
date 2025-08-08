@@ -1,36 +1,30 @@
+const BODY = document.querySelector('body');
 const TIME = document.querySelector('.time');
 const DATE = document.querySelector('.date');
 const GREETING = document.querySelector('.greeting');
 const warsDayCount = document.querySelector('.wars-day-count');
 const nameInput = document.querySelector('.name');
-const BODY = document.querySelector('body');
-const slidePrev = document.querySelector('.slide-prev');
-const slideNext = document.querySelector('.slide-next');
-const showWeatherBlock = document.querySelector('.show-weather-block');
-const showWeather = document.querySelector('.show-weather');
-const weatherWrapper = document.querySelector('.weather-wrapper');
-const weather = document.querySelector('.weather');
-const weatherIcon = document.querySelector('.weather-icon');
-const temperature = document.querySelector('.temperature');
-const weatherDescription = document.querySelector('.weather-description');
-const wind = document.querySelector('.wind');
-const humidity = document.querySelector('.humidity');
-const cityInput = document.querySelector('.city');
-const weatherError = document.querySelector('.weather-error');
+const showWeatherBlock = document.querySelector('.weather__btn');
+const showWeatherBtn = document.querySelector('.weather__show-btn');
+const weatherWrapper = document.querySelector('.weather');
+const weather = document.querySelector('.weather__popup');
+const weatherIcon = document.querySelector('.weather__icon');
+const temperature = document.querySelector('.weather__temperature');
+const weatherDescription = document.querySelector('.weather__description');
+const wind = document.querySelector('.weather__wind');
+const humidity = document.querySelector('.weather__humidity');
+const weatherCityInput = document.querySelector('.weather__city');
+const weatherError = document.querySelector('.weather__error');
 const QUOTE = document.querySelector('.quote__text');
 const AUTHOR = document.querySelector('.quote__author');
 const changeQuote = document.querySelector('.change-quote');
-const showTrack = document.querySelector('.show-track');
-const showPlaylistBtn = document.querySelector('.show-playlist');
 const playBtn = document.querySelector('.play');
-const playList = document.querySelector('.play-list');
-const playNextBtn = document.querySelector('.play-next');
-const playPrevBtn = document.querySelector('.play-prev');
 const changeLanguageBtn = document.querySelector('.change-language-btn');
 const translationBtnWrapper = document.querySelector(
   '.translation-btn-wrapper'
 );
 const translationBtn = document.querySelectorAll('.translation-btn');
+
 const quotes = {
   it: [
     {

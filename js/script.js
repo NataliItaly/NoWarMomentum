@@ -119,18 +119,17 @@ function setGreetings() {
 /*--------------- set local storage ---------------- */
 
 function setLocalStorage() {
-  localStorage.setItem('cityInput', cityInput.value);
+  localStorage.setItem('weatherCityInput', weatherCityInput.value);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
-  if (localStorage.getItem('cityInput')) {
-    cityInput.value = localStorage.getItem('cityInput');
+  if (localStorage.getItem('weatherCityInput')) {
+    weatherCityInput.value = localStorage.getItem('weatherCityInput');
   }
 }
 window.addEventListener('load', getLocalStorage);
 
-/*--------------- set background ------------------ */
 
 function getTimeOfDay() {
   const date = new Date();
@@ -147,43 +146,18 @@ function getTimeOfDay() {
   }
 }
 
-function getRandomNum(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-let pictureNumber = getRandomNum(1, 91);
-
-function setBackground() {
-  const img = new Image();
-  img.src = `assets/bg-images/${pictureNumber}.jpg`;
-  img.onload = () => {
-    BODY.style.backgroundImage = `url('assets/bg-images/${pictureNumber}.jpg')`;
-  };
-}
-setBackground();
-
-function setSliderLoop() {
-  setTimeout(setSliderLoop, 1500);
-  pictureNumber++;
-  if (pictureNumber >= 65) {
-    pictureNumber = 0;
-  }
-  setBackground();
-}
-
-//setSliderLoop();
-
-
 /*------------------- set weather ------------------ */
 
 showWeatherBlock.addEventListener('click', function () {
-  weather.classList.toggle('open-weather');
+  weather.classList.toggle('weather__popup_open');
 });
 
 let isWeather = false;
 
-async function getWeather() {
-  let cityName = cityInput.value;
+async function getWeather(event) {
+  event.preventDefault();
+
+  let cityName = weatherCityInput.value;
   let activeLanguage = document.querySelector('.active-language');
   let language = activeLanguage.dataset.language;
   try {
@@ -192,7 +166,7 @@ async function getWeather() {
     const res = await fetch(url);
     const data = await res.json();
 
-    weatherIcon.className = 'weather-icon owf';
+    weatherIcon.className = 'weather__icon owf';
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${data.main.temp}°C`;
     weatherDescription.textContent = data.weather[0].description;
@@ -210,6 +184,8 @@ async function getWeather() {
     }
     isWeather = true;
     weatherWrapper.classList.add('open-forecast');
+
+    event.target.classList.add('weather__show-btn_hidden');
   } catch (error) {
     weatherError.textContent = 'Please enter valid city name';
     if (language === 'ru') {
@@ -229,7 +205,14 @@ async function getWeather() {
   }
 }
 
-showWeather.addEventListener('click', getWeather);
+showWeatherBtn.addEventListener('click', (event) => getWeather(event));
+
+weatherCityInput.addEventListener('input', function() {
+  console.log(isWeather)
+  if (isWeather) {
+    showWeatherBtn.classList.remove('weather__show-btn_hidden');
+  }
+})
 
 /*-------------------- set quotes -------------------- */
 
@@ -260,24 +243,13 @@ changeQuote.addEventListener('click', getQuotes);
 
 /*------------------ set player -------------------- */
 
-/*for (let i = 0; i < trackList.length; i++) {
-  const li = document.createElement('li');
-  li.classList.add('play-item');
-  li.textContent = trackList[i].title;
-  playList.append(li);
-}*/
-
 let isPlay = false;
-/*let playNum = 0;
-const playItem = document.querySelectorAll('.play-item');
-playItem[playNum].classList.add('active');
-
-showTrack.textContent = document.querySelector('.active').textContent;*/
 
 const audio = new Audio();
+
 function playAudio() {
   if (!isPlay) {
-    audio.src = 'assets/sounds/Rob D  Clubbed To Death.mp3';
+    audio.src = 'assets/sounds/audio.mp3';
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
@@ -290,66 +262,64 @@ function playAudio() {
     playBtn.textContent = 'Listen';
   }
 }
-playBtn.addEventListener('click', playAudio);
 
-/*function playNext() {
-  playNum += 1;
+/*--------------- set background ------------------ */
 
-  if (playNum >= trackList.length) {
-    playNum = 0;
+function getRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let pictureNumber = getRandomNum(1, 51);
+let currentLoop = null; // active interval
+
+function setBackground(path) {
+  const img = new Image();
+  img.src = `assets/bg-images/${path}.jpg`;
+  img.onload = () => {
+    BODY.style.backgroundImage = `url('assets/bg-images/${path}.jpg')`;
+  };
+}
+//BODY.style.backgroundImage = `url('assets/bg-images/begin.jpg')`;
+setBackground(`start/${pictureNumber}`);
+
+function setSliderLoop(sec, lastNum, path) {
+  console.log(path)
+  setTimeout(() => setSliderLoop(sec, lastNum, path), sec);
+  let pictureNumber = 1;
+  pictureNumber++;
+  if (pictureNumber > lastNum) {
+    pictureNumber = 1;
   }
-  playItem.forEach((item) => item.classList.remove('active'));
-  playItem[playNum].classList.add('active');
-  showTrack.textContent = document.querySelector('.active').textContent;
-  if (isPlay === true) {
-    audio.src = trackList[playNum].src;
-    audio.currentTime = 0;
-    audio.play();
-  }
-}*/
+  setBackground(`${path}/${pictureNumber}`);
+}
 
-// playNextBtn.addEventListener('click', playNext);
+//setSliderLoop();
+/**
+ * i have a music track. It has different pieces. Play button has eventListener start set background. The timeout are:
+-first background is 'begin.jpg',
+- from 00.23.50 background loop from start folder (there are 51 pictures in total) .
+-from 01.02.00 background loop from culmination folder (there are 23 pictures in total) .
+- from 01.20.00  background loop from start folder
+- from 01.20.00  background loop from culmination folder ,
+- from 02.17.00  only piano.jpg background until 02.46.00.
+-from 02.46.00 background loop from slow folder (11 pictures in total).
+At 03.51.00 the music track is finish and the background should stop with the last shown picture
+ */
 
-/*function playPrev() {
-  playNum -= 1;
-  if (playNum < 0) {
-    playNum = trackList.length - 1;
-  }
-  playItem.forEach((item) => item.classList.remove('active'));
-  playItem[playNum].classList.add('active');
-  showTrack.textContent = document.querySelector('.active').textContent;
-  if (isPlay === true) {
-    audio.src = trackList[playNum].src;
-    audio.currentTime = 0;
-    audio.play();
-  }
-}*/
+playBtn.addEventListener('click', function() {
+  playAudio();
 
-// playPrevBtn.addEventListener('click', playPrev);
-
-/*for (let i = 0; i < playItem.length; i++) {
-  playItem[i].addEventListener('click', function choosePlayItem() {
-    playItem.forEach((item) => item.classList.remove('active'));
-    playItem[i].classList.add('active');
-    showTrack.textContent = document.querySelector('.active').textContent;
-    playNum = i;
-    if (isPlay === true) {
-      audio.src = trackList[playNum].src;
-      audio.currentTime = 0;
-      audio.play();
-    }
-  });
-}*/
-
-/*------------------------------------------------------------------------------- */
-
-/*showPlaylistBtn.addEventListener('click', function () {
-  showPlaylistBtn.classList.toggle('open');
-  playList.classList.toggle('open');
-});*/
-
-/*-------------------------------------------------------------------------------- */
-
-changeLanguageBtn.addEventListener('click', function () {
-  translationBtn.forEach((item) => item.classList.toggle('open'));
+  setBackground('begin');
+  // start photos
+  setInterval(function() {
+    setSliderLoop(2000, 51, 'start');
+  }, 23500);
+  // culmination
+  setInterval(function () {
+    setSliderLoop(1500, 23, 'culmination');
+  }, 66500);
+  setInterval(function () {
+    setSliderLoop(4000, 11, 'slow');
+  }, 47000);
 });
+
