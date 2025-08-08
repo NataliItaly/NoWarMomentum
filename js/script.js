@@ -6,7 +6,7 @@ function showTime() {
   TIME.textContent = currentTime;
   setTimeout(showTime, 1000);
   showDate();
-  showGreeting();
+  //showGreeting();
   setWarDays();
 }
 showTime();
@@ -294,37 +294,42 @@ function setSliderLoop(sec, lastNum, path) {
 }
 
 function startSequence() {
-  setBackground('begin');
-  VIDEO.classList.add('video-animated');
+  //setBackground('begin');
+  VIDEO.classList.add('video-animated-smoke-clear');
+  // 2080ms
+  // 00:22.70 — start
+  setTimeout(() => startLoop(2352, 26, 'start1'), 22700);
 
-  // 00:24.70 — start
-  setTimeout(() => startLoop(2000, 53, 'start'), 22700);
+  // 00:43:80 start faster
+  setTimeout(() => startLoop(1176, 27, 'start2'), 43700);
 
-  // 01:02.80 — explosion
-  setTimeout(() => startLoop(1000, 51, 'explosion'), 62800);
+  // 01:01.80 — explosion
+  setTimeout(() => startLoop(588, 14, 'explosion'), 61800);
 
   // 01:21.00 — start
-  setTimeout(() => startLoop(2000, 53, 'start'), 81000);
+  setTimeout(() => startLoop(1176, 26, 'start1'), 81000);
 
   // 01:39.80 — police
-  setTimeout(() => startLoop(3000, 23, 'police'), 109800);
+  setTimeout(() => startLoop(2352, 23, 'police'), 109800);
 
   // 02:17.00 — piano.jpg
   setTimeout(() => {
     stopLoop();
     setBackground('piano');
-    VIDEO.classList.remove('video-animated');
+    VIDEO.classList.add('video-animated-smoke-light');
   }, 137600);
 
   // 02:45.70 — slow loop
   setTimeout(() => {
     startLoop(6000, 22, 'slow');
-    VIDEO.classList.add('video-animated');
+    //VIDEO.classList.add('video-animated');
   }, 165700);
 
   // 03:51.00 — end
   setTimeout(() => {
-    VIDEO.classList.remove('video-animated');
+    VIDEO.classList.remove('video-animated-smoke-light');
+    VIDEO.classList.remove('video-animated-smoke-clear');
+
     stopLoop();
   }, 231000);
 }
