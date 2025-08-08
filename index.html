@@ -11,11 +11,21 @@
   <body>
     <div class="video">
           <video class="video__source" autoplay muted loop playsinline>
-            <source src="./assets/video/smoke.mp4" type="video/mp4" />
+            <source src="./assets/video/smoke1.mp4" type="video/mp4" />
             Your browser does not support video
           </video>
         </div>
     <header class="header">
+      <div class="date-block">
+        <span data-translation="today">Today is </span>
+        <date class="date"></date>,
+      </div>
+      <div class="wars-day-block">
+        <span class="wars-day-count"></span>
+        <span class="wars-day" data-translation="wars-day"> day of</span>
+        <span class="war">war</span> <span>in Ukraine</span>
+      </div>
+
       <div class="translation-block">
         <button class="change-language-btn"></button>
         <div class="translation-btn-wrapper">
@@ -33,6 +43,7 @@
           </div>
         </div>
       </div>
+      <time class="time"></time>
       <div class="weather">
         <button class="weather__btn"></button>
         <form class="weather__popup">
@@ -58,16 +69,9 @@
     </header>
     <main class="main">
       <div class="greeting"></div>
-      <time class="time"></time>
-      <div class="date-block">
-        <span data-translation="today">Today is </span>
-        <date class="date"></date>,
-      </div>
-      <div class="wars-day-block">
-        <span class="wars-day-count"></span>
-        <span class="wars-day" data-translation="wars-day"> day of</span>
-        <span class="war">war</span> <span>in Ukraine</span>
-      </div>
+
+
+
     </main>
     <footer class="footer">
       <button class="change-quote"></button>
