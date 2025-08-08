@@ -6,7 +6,6 @@ function showTime() {
   TIME.textContent = currentTime;
   setTimeout(showTime, 1000);
   showDate();
-  //showGreeting();
   setWarDays();
 }
 showTime();
@@ -20,8 +19,8 @@ function setWarDays() {
   let timeWar = warDay.getTime();
   let diffWarToday = timeToday - timeWar;
   let realDiff = Math.ceil(diffWarToday / (1000 * 60 * 60 * 24));
-  let activeLanguage = document.querySelector('.active-language');
-  let language = activeLanguage.dataset.language;
+  //let activeLanguage = document.querySelector('.active-language');
+  let language = 'en';  //activeLanguage.dataset.language;
 
    warsDayCount.textContent =  language === 'en' ? `the ${realDiff}nth` : realDiff;
 }
@@ -37,83 +36,14 @@ function showDate() {
 
 
   let currentDate = date.toLocaleDateString('en-Br', options);
-  let activeLanguage = document.querySelector('.active-language');
+  /*let activeLanguage = document.querySelector('.active-language');
   if (activeLanguage.dataset.language === 'ru') {
     currentDate = date.toLocaleDateString('ru-Ru', options);
   } else if (activeLanguage.dataset.language === 'it') {
     currentDate = date.toLocaleDateString('it-It', options);
-  }
+  }*/
 
   DATE.textContent = currentDate;
-}
-
-/*---------------- set greeting--------------------- */
-
-function showGreeting() {
-  const date = new Date();
-  const hours = date.getHours();
-  const timeOfDay = setGreetings();
-
-  let activeLanguage = document.querySelector('.active-language');
-  let greetingText = `Good${timeOfDay}`;
-  if (activeLanguage.dataset.language === 'ru') {
-    greetingText = `Добр${timeOfDay}`;
-  } else if (activeLanguage.dataset.language === 'it') {
-    greetingText = `Buon${timeOfDay}`;
-  }
-
-  GREETING.textContent = greetingText;
-}
-
-function setGreetings() {
-  const date = new Date();
-  const hours = date.getHours();
-  let activeLanguage = document.querySelector('.active-language');
-  if (hours >= 23 || hours < 5) {
-    switch (activeLanguage.dataset.language) {
-      case 'ru':
-        return `ой ночи`;
-        break;
-      case 'it':
-        return `a notte`;
-        break;
-      default:
-        return ` night`;
-    }
-  } else if (hours >= 5 && hours <= 11) {
-    switch (activeLanguage.dataset.language) {
-      case 'ru':
-        return `ое утро`;
-        break;
-      case 'it':
-        return `a mattina`;
-        break;
-      default:
-        return ` morning`;
-    }
-  } else if (hours > 11 && hours <= 17) {
-    switch (activeLanguage.dataset.language) {
-      case 'ru':
-        return `ый день`;
-        break;
-      case 'it':
-        return ` giorno`;
-        break;
-      default:
-        return ` afternoon`;
-    }
-  } else if (hours > 17 && hours < 23) {
-    switch (activeLanguage.dataset.language) {
-      case 'ru':
-        return `ый вечер`;
-        break;
-      case 'it':
-        return `a sera`;
-        break;
-      default:
-        return ` evening`;
-    }
-  }
 }
 
 /*--------------- set local storage ---------------- */
@@ -221,8 +151,8 @@ let randomQuote;
 function getQuotes() {
   randomQuote = getRandomNum(0, quotes.en.length - 1);
 
-  let activeLanguage = document.querySelector('.active-language');
-  switch (activeLanguage.dataset.language) {
+  let activeLanguage = 'en'; //document.querySelector('.active-language').dataset.language;
+  switch (activeLanguage) {
     case 'ru':
       QUOTE.textContent = quotes.ru[randomQuote].text;
       AUTHOR.textContent = quotes.ru[randomQuote].quote__author;
@@ -274,9 +204,9 @@ let currentLoop = null; // active interval
 
 function setBackground(path) {
   const img = new Image();
-  img.src = `assets/bg-images/${path}.jpg`;
+  img.src = `assets/bg-images/${path}.webp`;
   img.onload = () => {
-    BODY.style.backgroundImage = `url('assets/bg-images/${path}.jpg')`;
+    BODY.style.backgroundImage = `url('assets/bg-images/${path}.webp')`;
   };
 }
 
@@ -297,20 +227,20 @@ function startSequence() {
   //setBackground('begin');
   VIDEO.classList.add('video-animated-smoke-clear');
   // 2080ms
-  // 00:22.70 — start
+  // 00:22.70 — start1
   setTimeout(() => startLoop(2352, 26, 'start1'), 22700);
 
-  // 00:43:80 start faster
+  // 00:43:80 start2 faster
   setTimeout(() => startLoop(1176, 27, 'start2'), 43700);
 
   // 01:01.80 — explosion
-  setTimeout(() => startLoop(588, 14, 'explosion'), 61800);
+  setTimeout(() => startLoop(588, 13, 'explosion'), 61800);
 
-  // 01:21.00 — start
-  setTimeout(() => startLoop(1176, 26, 'start1'), 81000);
+  // 01:21.00 — police
+  setTimeout(() => startLoop(2352, 22, 'police'), 81000);
 
-  // 01:39.80 — police
-  setTimeout(() => startLoop(2352, 23, 'police'), 109800);
+  // 01:39.80 — start3
+  setTimeout(() => startLoop(1176, 12, 'start3'), 109800);
 
   // 02:17.00 — piano.jpg
   setTimeout(() => {
@@ -350,21 +280,6 @@ function stopLoop() {
     currentLoop = null;
   }
 }
-
-
-
-//setSliderLoop();
-/**
- * i have a music track. It has different pieces. Play button has eventListener start set background. The timeout are:
--first background is 'begin.jpg',
-- from 00.23.50 background loop from start folder (there are 51 pictures in total) .
--from 01.02.00 background loop from culmination folder (there are 23 pictures in total) .
-- from 01.20.00  background loop from start folder
-- from 01.20.00  background loop from culmination folder ,
-- from 02.17.00  only piano.jpg background until 02.46.00.
--from 02.46.00 background loop from slow folder (11 pictures in total).
-At 03.51.00 the music track is finish and the background should stop with the last shown picture
- */
 
 playBtn.addEventListener('click', function() {
   playAudio();

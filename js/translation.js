@@ -36,10 +36,10 @@ const translationObj = {
   },
 };
 
-const translationWrapper = document.querySelector('.translation-btn-wrapper');
-const translationText = document.querySelectorAll('[data-translation]');
+//const translationWrapper = document.querySelector('.translation-btn-wrapper');
+//const translationText = document.querySelectorAll('[data-translation]');
 
-translationWrapper.addEventListener('click', function (event) {
+/* translationWrapper.addEventListener('click', function (event) {
   if (event.target.classList.contains('translation-btn')) {
     translationBtn.forEach((item) => item.classList.remove('active-language'));
     event.target.classList.add('active-language');
@@ -58,11 +58,11 @@ translationWrapper.addEventListener('click', function (event) {
       let dataText =
         item.getAttribute(
           'data-translation'
-        ); /*получаем значение атрибута data у всех элементов для переводa */
+        );
       if (item.placeholder) {
         item.placeholder = translationObj[language][item.dataset.translation];
       }
       item.textContent = translationObj[language][dataText];
     });
   }
-});
+}); */

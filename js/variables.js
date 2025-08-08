@@ -1,7 +1,6 @@
 const BODY = document.querySelector('body');
 const TIME = document.querySelector('.time');
 const DATE = document.querySelector('.date');
-const GREETING = document.querySelector('.greeting');
 const VIDEO = document.querySelector('.video');
 const warsDayCount = document.querySelector('.wars-day-count');
 const nameInput = document.querySelector('.name');
@@ -20,11 +19,11 @@ const QUOTE = document.querySelector('.quote__text');
 const AUTHOR = document.querySelector('.quote__author');
 const changeQuote = document.querySelector('.change-quote');
 const playBtn = document.querySelector('.play');
-const changeLanguageBtn = document.querySelector('.change-language-btn');
-const translationBtnWrapper = document.querySelector(
+//const changeLanguageBtn = document.querySelector('.change-language-btn');
+/* const translationBtnWrapper = document.querySelector(
   '.translation-btn-wrapper'
 );
-const translationBtn = document.querySelectorAll('.translation-btn');
+const translationBtn = document.querySelectorAll('.translation-btn'); */
 
 const quotes = {
   it: [
@@ -278,33 +277,3 @@ const quotes = {
   ],
 };
 
-const trackList = [
-  {
-    title: 'Rob D  Clubbed To Death',
-    src: 'assets/sounds/Rob D  Clubbed To Death.mp3',
-  },
-  {
-    title: 'Okean Elzi Obiymi mene',
-    src: 'assets/sounds/Okean Eelzi Obiymi mene.mp3',
-  },
-  {
-    title: 'The Prodigy Voodoo people',
-    src: 'assets/sounds/The Prodigy Voodoo people.mp3',
-  },
-  {
-    title: 'Okean Elzi Ne tvoya viyna',
-    src: 'assets/sounds/Okean Elz Ne tvoya viyna.mp3',
-  },
-  {
-    title: 'Visotskiy Soldatadi Gruppi Tsentr',
-    src: 'assets/sounds/Visotskiy Soldatadi Gruppi Tsentr.mp3',
-  },
-  {
-    title: 'Zemfira Ne strelyayte',
-    src: 'assets/sounds/Zemfira Ne strelyayte.mp3',
-  },
-  {
-    title: 'Nogu Svelo Ukraina',
-    src: 'assets/sounds/Nogu Svelo Ukraina.mp3',
-  },
-];

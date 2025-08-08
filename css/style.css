@@ -22,7 +22,7 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background: url('../assets/bg-images/begin.jpg') center/cover, rgba(0, 0, 0, 0.5);
+  background: url('../assets/bg-images/begin.webp') center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background 0.6s ease-in-out;
   position: relative;
@@ -380,9 +380,7 @@ body {
   align-items: center;
   gap: 10px;
   margin: 0 auto;
-  min-height: 260px;
-  padding: 0 20px;
-  border-radius: 20px;
+  padding: 30px 20px 0;
 }
 
 .slide-prev {
