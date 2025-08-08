@@ -279,8 +279,8 @@ function setBackground(path) {
     BODY.style.backgroundImage = `url('assets/bg-images/${path}.jpg')`;
   };
 }
-//BODY.style.backgroundImage = `url('assets/bg-images/begin.jpg')`;
-setBackground(`start/${pictureNumber}`);
+
+//setBackground(`start/${pictureNumber}`);
 
 function setSliderLoop(sec, lastNum, path) {
   console.log(path)
@@ -292,6 +292,61 @@ function setSliderLoop(sec, lastNum, path) {
   }
   setBackground(`${path}/${pictureNumber}`);
 }
+
+function startSequence() {
+  setBackground('begin');
+  VIDEO.classList.add('video-animated');
+
+  // 00:24.70 — start
+  setTimeout(() => startLoop(2000, 53, 'start'), 22700);
+
+  // 01:02.80 — explosion
+  setTimeout(() => startLoop(1000, 51, 'explosion'), 62800);
+
+  // 01:21.00 — start
+  setTimeout(() => startLoop(2000, 53, 'start'), 81000);
+
+  // 01:39.80 — police
+  setTimeout(() => startLoop(3000, 23, 'police'), 109800);
+
+  // 02:17.00 — piano.jpg
+  setTimeout(() => {
+    stopLoop();
+    setBackground('piano');
+    VIDEO.classList.remove('video-animated');
+  }, 137600);
+
+  // 02:45.70 — slow loop
+  setTimeout(() => {
+    startLoop(6000, 22, 'slow');
+    VIDEO.classList.add('video-animated');
+  }, 165700);
+
+  // 03:51.00 — end
+  setTimeout(() => {
+    VIDEO.classList.remove('video-animated');
+    stopLoop();
+  }, 231000);
+}
+
+function startLoop(interval, totalImages, folder) {
+  stopLoop(); // stop last loop
+  pictureIndex = 1;
+  currentLoop = setInterval(() => {
+    setBackground(`${folder}/${pictureIndex}`);
+    pictureIndex++;
+    if (pictureIndex > totalImages) pictureIndex = 1;
+  }, interval);
+}
+
+function stopLoop() {
+  if (currentLoop) {
+    clearInterval(currentLoop);
+    currentLoop = null;
+  }
+}
+
+
 
 //setSliderLoop();
 /**
@@ -309,17 +364,6 @@ At 03.51.00 the music track is finish and the background should stop with the la
 playBtn.addEventListener('click', function() {
   playAudio();
 
-  setBackground('begin');
-  // start photos
-  setInterval(function() {
-    setSliderLoop(2000, 51, 'start');
-  }, 23500);
-  // culmination
-  setInterval(function () {
-    setSliderLoop(1500, 23, 'culmination');
-  }, 66500);
-  setInterval(function () {
-    setSliderLoop(4000, 11, 'slow');
-  }, 47000);
+  startSequence();
 });
 

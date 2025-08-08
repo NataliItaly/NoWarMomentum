@@ -2,6 +2,7 @@ const BODY = document.querySelector('body');
 const TIME = document.querySelector('.time');
 const DATE = document.querySelector('.date');
 const GREETING = document.querySelector('.greeting');
+const VIDEO = document.querySelector('.video');
 const warsDayCount = document.querySelector('.wars-day-count');
 const nameInput = document.querySelector('.name');
 const showWeatherBlock = document.querySelector('.weather__btn');
