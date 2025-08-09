@@ -71,8 +71,11 @@ changeQuote.addEventListener('click', getQuotes);
 /*------------------ set player -------------------- */
 
 let isPlay = false;
+let isSlider = false;
 
 const audio = new Audio();
+
+function pauseAudio() {}
 
 function playAudio() {
   if (!isPlay) {
@@ -82,11 +85,14 @@ function playAudio() {
     isPlay = true;
     playBtn.classList.add('player__btn_paused');
     playBtn.textContent = '';
+
+    startSequence();
   } else {
     audio.pause();
     isPlay = false;
     playBtn.classList.remove('player__btn_paused');
     playBtn.textContent = 'Listen';
+    stopLoop();
   }
 }
 
@@ -200,7 +206,5 @@ function stopLoop() {
 
 playBtn.addEventListener('click', function() {
   playAudio();
-
-  startSequence();
 });
 
