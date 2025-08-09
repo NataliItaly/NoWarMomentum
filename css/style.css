@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: inherit;
 }
 
 body {
@@ -141,17 +142,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 130px;
   height: 50px;
   color: red;
   font-size: calc(16px + 8 * (100vw / 1340));
   font-weight: 800;
   text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.6);
+  background: url('../assets/svg/pause-transparent.svg') no-repeat center / 35px, rgba(255, 255, 255, 0.5);
   padding: 10px;
   cursor: pointer;
   border-radius: 15px;
-  border: none;
-  transition: all 1s;
+  border: 2px solid red;
+  transition: all 0.6s;
 }
 
 .play:hover {
@@ -159,14 +161,15 @@ body {
   color: #fff;
 }
 
-.pause-img {
-  width: 30px;
+.play_paused {
+  width: 50px;
+  background: url('../assets/svg/pause.svg') no-repeat center / 35px, rgba(255, 255, 255, 0.3);
   border-radius: 50%;
+  border: 2px solid transparent;
 }
-/*background: url('../assets/svg/pause.svg') no-repeat center / 35px, rgba(255, 255, 255, 0.3);*/
 
-.pause:hover {
-  /*background:  url('../assets/svg/pause.svg') no-repeat center / 35px, red ;*/
+.play_paused:hover {
+  background:  url('../assets/svg/pause.svg') no-repeat center / 35px, red ;
 }
 
 .change-language-btn {
@@ -378,7 +381,7 @@ body {
   align-items: center;
   gap: 10px;
   margin: 0 auto;
-  padding: 30px 20px 0;
+  padding: 20px 20px 0;
 }
 
 .slide-prev {
@@ -540,13 +543,17 @@ body {
 }
 
 .all-pictures {
-  margin-top: 10px;
+  margin: 10px auto 10px;
   padding: 0px 10px;
   letter-spacing: 3px;
   font-size: 14px;
   color: red;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
+}
+
+.author {
+  text-shadow: 0 0 20px #000;
 }
 
 @media (max-width: 768px) {

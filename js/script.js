@@ -183,13 +183,13 @@ function playAudio() {
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
-    //playBtn.classList.add('pause');
-    playBtn.innerHTML = '<img src="../assets/svg/pause.svg" alt="pause" class="pause-img">';
+    playBtn.classList.add('play_paused');
+    playBtn.textContent = '';
   } else {
     audio.pause();
     isPlay = false;
-    //playBtn.classList.remove('pause');
-    playBtn.innerHTML = 'Listen';
+    playBtn.classList.remove('play_paused');
+    playBtn.textContent = 'Listen';
   }
 }
 
@@ -266,9 +266,9 @@ function startSequence() {
 
   // 02:45.70 — slow loop
   setTimeout(() => {
-    BODY.style.transition = 'background 2.352s linear';
+    BODY.style.transition = 'background 3.528s linear';
 
-    startLoop(4702, 12, 'slow');
+    startLoop(4702, 14, 'slow');
     //VIDEO.classList.add('video-animated-full');
   }, 163700);
 
@@ -278,8 +278,9 @@ function startSequence() {
     VIDEO.classList.remove('video-animated-smoke-clear');
     VIDEO.classList.add('video-animated-smoke-full');
 
-    setBackground('slow/9');
+    setBackground('slow/14');
     stopLoop();
+    isPlay = false;
   }, 231000);
 }
 
