@@ -78,13 +78,13 @@ function getTimeOfDay() {
 
 /*------------------- set weather ------------------ */
 
-showWeatherBlock.addEventListener('click', function () {
+/* showWeatherBlock.addEventListener('click', function () {
   weather.classList.toggle('weather__popup_open');
-});
+}); */
 
-let isWeather = false;
+//let isWeather = false;
 
-async function getWeather(event) {
+/* async function getWeather(event) {
   event.preventDefault();
 
   let cityName = weatherCityInput.value;
@@ -133,16 +133,16 @@ async function getWeather(event) {
   if (cityName === undefined) {
     weatherError.textContent = 'Please enter valid city name';
   }
-}
+} */
 
-showWeatherBtn.addEventListener('click', (event) => getWeather(event));
+//showWeatherBtn.addEventListener('click', (event) => getWeather(event));
 
-weatherCityInput.addEventListener('input', function() {
+/* weatherCityInput.addEventListener('input', function() {
   console.log(isWeather)
   if (isWeather) {
     showWeatherBtn.classList.remove('weather__show-btn_hidden');
   }
-})
+}) */
 
 /*-------------------- set quotes -------------------- */
 
@@ -183,13 +183,13 @@ function playAudio() {
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
-    playBtn.classList.add('pause');
-    playBtn.textContent = '';
+    //playBtn.classList.add('pause');
+    playBtn.innerHTML = '<img src="../assets/svg/pause.svg" alt="pause" class="pause-img">';
   } else {
     audio.pause();
     isPlay = false;
-    playBtn.classList.remove('pause');
-    playBtn.textContent = 'Listen';
+    //playBtn.classList.remove('pause');
+    playBtn.innerHTML = 'Listen';
   }
 }
 
@@ -224,23 +224,38 @@ function setSliderLoop(sec, lastNum, path) {
 }
 
 function startSequence() {
-  //setBackground('begin');
+  setBackground('begin');
   VIDEO.classList.add('video-animated-smoke-clear');
+    BODY.style.transition = 'background 0s linear';
+
   // 2080ms
   // 00:22.70 — start1
-  setTimeout(() => startLoop(2352, 26, 'start1'), 22700);
+  setTimeout(() => {
+    startLoop(1176, 17, 'start1')
+  }, 23700);
 
   // 00:43:80 start2 faster
-  setTimeout(() => startLoop(1176, 27, 'start2'), 43700);
+  setTimeout(() => {
+    BODY.style.transition = 'background 0.6s linear';
+
+    startLoop(1176, 19, 'start2')
+  }, 43700);
 
   // 01:01.80 — explosion
-  setTimeout(() => startLoop(588, 13, 'explosion'), 61800);
+  setTimeout(() => {
+    startLoop(588, 13, 'explosion');
+    BODY.style.transition = 'background 0s linear';
+  }, 61800);
 
   // 01:21.00 — police
-  setTimeout(() => startLoop(2352, 22, 'police'), 81000);
+  setTimeout(() => {
+    startLoop(1176, 24, 'police')
+    BODY.style.transition = 'background 0.6s linear';
+
+  }, 80412);
 
   // 01:39.80 — start3
-  setTimeout(() => startLoop(1176, 12, 'start3'), 109800);
+  setTimeout(() => startLoop(1176, 27, 'start3'), 109800);
 
   // 02:17.00 — piano.jpg
   setTimeout(() => {
@@ -251,15 +266,19 @@ function startSequence() {
 
   // 02:45.70 — slow loop
   setTimeout(() => {
-    startLoop(6000, 22, 'slow');
-    //VIDEO.classList.add('video-animated');
-  }, 165700);
+    BODY.style.transition = 'background 2.352s linear';
+
+    startLoop(4702, 12, 'slow');
+    //VIDEO.classList.add('video-animated-full');
+  }, 163700);
 
   // 03:51.00 — end
   setTimeout(() => {
     VIDEO.classList.remove('video-animated-smoke-light');
     VIDEO.classList.remove('video-animated-smoke-clear');
+    VIDEO.classList.add('video-animated-smoke-full');
 
+    setBackground('slow/9');
     stopLoop();
   }, 231000);
 }

@@ -9,10 +9,6 @@
   padding: 0;
 }
 
-*:focus {
-  outline: 3px solid #f1b851;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -24,7 +20,7 @@ body {
   text-align: center;
   background: url('../assets/bg-images/begin.webp') center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
-  transition: background 0.6s ease-in-out;
+  transition: background 0.6s linear;
   position: relative;
 }
 
@@ -115,8 +111,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120px;
-  margin: 0 0px 10px 0;
 }
 
 .change-quote {
@@ -144,18 +138,20 @@ body {
 }
 
 .play {
-  width: 140px;
-  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
   color: red;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: calc(16px + 8 * (100vw / 1340));
+  font-weight: 800;
   text-transform: uppercase;
   background: rgba(255, 255, 255, 0.6);
-  padding: 0 15px;
+  padding: 10px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 15px;
   border: none;
-  transition: 0.5s;
+  transition: all 1s;
 }
 
 .play:hover {
@@ -163,12 +159,14 @@ body {
   color: #fff;
 }
 
-.pause {
-  background: url('../assets/svg/pause.svg') no-repeat center / 35px, rgba(255, 255, 255, 0.3);
+.pause-img {
+  width: 30px;
+  border-radius: 50%;
 }
+/*background: url('../assets/svg/pause.svg') no-repeat center / 35px, rgba(255, 255, 255, 0.3);*/
 
 .pause:hover {
-  background:  url('../assets/svg/pause.svg') no-repeat center / 35px, red ;
+  /*background:  url('../assets/svg/pause.svg') no-repeat center / 35px, red ;*/
 }
 
 .change-language-btn {
@@ -395,9 +393,10 @@ body {
 
 .time {
   font-family: 'Arial-MT';
-  font-size: calc(36px + 24 * (100vw / 1340));
+  font-size: calc(30px + 20 * (100vw / 1340));
   letter-spacing: -4px;
-  background-color: rgba(0, 0, 0, 0.4);
+  /*background-color: rgba(0, 0, 0, 0.4);*/
+  text-shadow: 0 0 10px #000;
   padding: 0 5px;
   border-radius: 10px;
 }
@@ -405,8 +404,9 @@ body {
 .date-block {
   min-height: 28px;
   font-size: 24px;
-  font-size: calc(18px + 6 * (100vw / 1340));
-  background-color: rgba(0, 0, 0, 0.4);
+  font-size: calc(16px + 6 * (100vw / 1340));
+  /*background-color: rgba(0, 0, 0, 0.4);*/
+  text-shadow: 0 0 10px #000;
   padding: 0 5px;
   border-radius: 10px;
   margin-bottom: 5px;
@@ -441,14 +441,16 @@ body {
 
 .wars-day-block {
   display: flex;
-  gap: 10px;
+  column-gap: 10px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  font-size: calc(24px + 20 * (100vw / 1340));
+  font-size: calc(24px + 16 * (100vw / 1340));
+  line-height: 1;
   font-weight: 600;
   color: red;
-  background-color: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 10px #000;
+  /*background-color: rgba(0, 0, 0, 0.4);*/
 }
 
 .wars-day-block span:not(.war) {
@@ -549,7 +551,7 @@ body {
 
 @media (max-width: 768px) {
   .time {
-    font-size: calc(36px + (24 + 24 * 0.7) * ((100vw - 320px) / 1340));
+    font-size: calc(30px + (20 + 20 * 0.7) * ((100vw - 320px) / 1340));
   }
 
     .greeting {
@@ -558,11 +560,11 @@ body {
   }
 
   .date-block {
-    font-size: calc(18px + (6 + 6 * 0.7) * ((100vw - 320px) / 1340));
+    font-size: calc(16px + (6 + 6 * 0.7) * ((100vw - 320px) / 1340));
   }
 
   .wars-day-block {
-    font-size: calc(24px + (20 + 20 * 0.7) * ((100vw - 320px) / 1340));
+    font-size: calc(24px + (16 + 16 * 0.7) * ((100vw - 320px) / 1340));
   }
 
   .war {
