@@ -52,7 +52,7 @@ body {
 }
 
 .video-animated-smoke-full {
-  animation: smokeLight 28s linear forwards;
+  animation: smokeFull 10s linear forwards;
 }
 
 @keyframes smokeClear {
