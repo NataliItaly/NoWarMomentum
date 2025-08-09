@@ -214,11 +214,10 @@ body {
   line-height: 1;
   font-weight: 600;
   color: red;
-  text-shadow: 0 0 10px #000;
-  /*background-color: rgba(0, 0, 0, 0.4);*/
 }
 
 .war > span:not(.war__word) {
+  text-shadow: 0 0 10px #000;
   flex: 0 1 auto;
 }
 
