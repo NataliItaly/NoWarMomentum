@@ -60,21 +60,8 @@ let randomQuote;
 
 function getQuotes() {
   randomQuote = getRandomNum(0, quotes.en.length - 1);
-
-  let activeLanguage = 'en'; //document.querySelector('.active-language').dataset.language;
-  switch (activeLanguage) {
-    case 'ru':
-      QUOTE.textContent = quotes.ru[randomQuote].text;
-      AUTHOR.textContent = quotes.ru[randomQuote].author;
-      break;
-    case 'it':
-      QUOTE.textContent = quotes.it[randomQuote].text;
-      AUTHOR.textContent = quotes.it[randomQuote].author;
-      break;
-    default:
-      QUOTE.textContent = quotes.en[randomQuote].text;
-      AUTHOR.textContent = quotes.en[randomQuote].author;
-  }
+  QUOTE.textContent = quotes.en[randomQuote].text;
+  AUTHOR.textContent = quotes.en[randomQuote].author;
 }
 
 getQuotes();

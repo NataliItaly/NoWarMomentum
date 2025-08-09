@@ -18,7 +18,7 @@ body {
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
-  color: #fff;
+  color: #f1efef;
   text-align: center;
   background: url('../assets/bg-images/begin.webp') center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
@@ -145,7 +145,7 @@ body {
 
 .player__btn:hover {
   background: red;
-  color: #fff;
+  color: #f1efef;
 }
 
 .player__btn_paused {
@@ -190,7 +190,7 @@ body {
   font-weight: 900;
   position: relative;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #f1efef;
 }
 
 .war__word::before {
@@ -274,12 +274,17 @@ body {
   letter-spacing: 3px;
   font-size: 14px;
   color: red;
-  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.6);
   border-radius: 5px;
 }
 
 .author {
+  color: #b9b9b9;
   text-shadow: 0 0 20px #000;
+}
+
+.author > a {
+  color: #f1efef;
 }
 
 @media (max-width: 768px) {
