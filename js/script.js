@@ -19,10 +19,9 @@ function setWarDays() {
   let timeWar = warDay.getTime();
   let diffWarToday = timeToday - timeWar;
   let realDiff = Math.ceil(diffWarToday / (1000 * 60 * 60 * 24));
-  //let activeLanguage = document.querySelector('.active-language');
-  let language = 'en';  //activeLanguage.dataset.language;
+  let language = 'en';
 
-   warsDayCount.textContent =  language === 'en' ? `the ${realDiff}nth` : realDiff;
+   warsDayCount.textContent =  `the ${realDiff}nth`;
 }
 
 function showDate() {
@@ -36,30 +35,9 @@ function showDate() {
 
 
   let currentDate = date.toLocaleDateString('en-Br', options);
-  /*let activeLanguage = document.querySelector('.active-language');
-  if (activeLanguage.dataset.language === 'ru') {
-    currentDate = date.toLocaleDateString('ru-Ru', options);
-  } else if (activeLanguage.dataset.language === 'it') {
-    currentDate = date.toLocaleDateString('it-It', options);
-  }*/
 
   DATE.textContent = currentDate;
 }
-
-/*--------------- set local storage ---------------- */
-
-function setLocalStorage() {
-  localStorage.setItem('weatherCityInput', weatherCityInput.value);
-}
-window.addEventListener('beforeunload', setLocalStorage);
-
-function getLocalStorage() {
-  if (localStorage.getItem('weatherCityInput')) {
-    weatherCityInput.value = localStorage.getItem('weatherCityInput');
-  }
-}
-window.addEventListener('load', getLocalStorage);
-
 
 function getTimeOfDay() {
   const date = new Date();
@@ -76,74 +54,6 @@ function getTimeOfDay() {
   }
 }
 
-/*------------------- set weather ------------------ */
-
-/* showWeatherBlock.addEventListener('click', function () {
-  weather.classList.toggle('weather__popup_open');
-}); */
-
-//let isWeather = false;
-
-/* async function getWeather(event) {
-  event.preventDefault();
-
-  let cityName = weatherCityInput.value;
-  let activeLanguage = document.querySelector('.active-language');
-  let language = activeLanguage.dataset.language;
-  try {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${language}&appid=5c08670149a0b1a4dc7a372a3d5e5333&units=metric`;
-    console.log(url);
-    const res = await fetch(url);
-    const data = await res.json();
-
-    weatherIcon.className = 'weather__icon owf';
-    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-    temperature.textContent = `${data.main.temp}°C`;
-    weatherDescription.textContent = data.weather[0].description;
-    wind.textContent = `Wind speed: ${data.wind.speed} m/s`;
-    humidity.textContent = `Humidity: ${data.main.humidity}%`;
-
-    if (weatherError.textContent) weatherError.textContent = '';
-
-    if (language === 'ru') {
-      wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
-      humidity.textContent = `Влажность воздуха: ${data.main.humidity}%`;
-    } else if (language === 'it') {
-      wind.textContent = `Vento: ${data.wind.speed} m/s`;
-      humidity.textContent = `Umidità: ${data.main.humidity}%`;
-    }
-    isWeather = true;
-    weatherWrapper.classList.add('open-forecast');
-
-    event.target.classList.add('weather__show-btn_hidden');
-  } catch (error) {
-    weatherError.textContent = 'Please enter valid city name';
-    if (language === 'ru') {
-      weatherError.textContent = 'Пожалуйста, введите верное название города';
-    } else if (language === 'it') {
-      weatherError.textContent =
-        'Si prega di inserire il nome corretto della città';
-    }
-    temperature.textContent = '';
-    humidity.textContent = '';
-    weatherDescription.textContent = '';
-    wind.textContent = '';
-    weatherIcon.style.display = 'none';
-  }
-  if (cityName === undefined) {
-    weatherError.textContent = 'Please enter valid city name';
-  }
-} */
-
-//showWeatherBtn.addEventListener('click', (event) => getWeather(event));
-
-/* weatherCityInput.addEventListener('input', function() {
-  console.log(isWeather)
-  if (isWeather) {
-    showWeatherBtn.classList.remove('weather__show-btn_hidden');
-  }
-}) */
-
 /*-------------------- set quotes -------------------- */
 
 let randomQuote;
@@ -155,15 +65,15 @@ function getQuotes() {
   switch (activeLanguage) {
     case 'ru':
       QUOTE.textContent = quotes.ru[randomQuote].text;
-      AUTHOR.textContent = quotes.ru[randomQuote].quote__author;
+      AUTHOR.textContent = quotes.ru[randomQuote].author;
       break;
     case 'it':
       QUOTE.textContent = quotes.it[randomQuote].text;
-      AUTHOR.textContent = quotes.it[randomQuote].quote__author;
+      AUTHOR.textContent = quotes.it[randomQuote].author;
       break;
     default:
       QUOTE.textContent = quotes.en[randomQuote].text;
-      AUTHOR.textContent = quotes.en[randomQuote].quote__author;
+      AUTHOR.textContent = quotes.en[randomQuote].author;
   }
 }
 
@@ -183,12 +93,12 @@ function playAudio() {
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
-    playBtn.classList.add('play_paused');
+    playBtn.classList.add('player__btn_paused');
     playBtn.textContent = '';
   } else {
     audio.pause();
     isPlay = false;
-    playBtn.classList.remove('play_paused');
+    playBtn.classList.remove('player__btn_paused');
     playBtn.textContent = 'Listen';
   }
 }

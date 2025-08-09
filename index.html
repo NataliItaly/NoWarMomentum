@@ -17,63 +17,32 @@
     </div>
     <main class="main">
       <div class="date-block">
-        <span data-translation="today">Today is </span>
+        <span>Today is </span>
         <date class="date"></date>,
       </div>
-      <div class="wars-day-block">
-        <span class="wars-day-count"></span>
-        <span class="wars-day" data-translation="wars-day"> day of</span>
-        <span class="war">war</span> <span>in Ukraine</span>
+      <div class="war">
+        <span class="war__days-count"></span>
+        <span> day of</span>
+        <span class="war__word">war</span> <span>in Ukraine</span>
       </div>
-
-      <!-- <div class="translation-block">
-        <button class="change-language-btn"></button>
-        <div class="translation-btn-wrapper">
-          <button class="translation-btn active-language" data-language="en">
-            en
-          </button>
-          <button class="translation-btn" data-language="ru">ru</button>
-          <button class="translation-btn" data-language="it">it</button>
-        </div>
-      </div> -->
-      <div class="player-wrapper">
-        <div class="player">
-          <div class="player-controls">
-            <button class="play player-icon">Listen</button>
+      <div class="player">
+        <div class="player__wrapper">
+          <div class="player__controls">
+            <button class="player__btn" aria-label="Click to listen presentation"></button>
           </div>
         </div>
       </div>
       <time class="time"></time>
-     <!--  <div class="weather">
-        <button class="weather__btn"></button>
-        <form class="weather__popup">
-          <input
-            type="text"
-            class="weather__city"
-            placeholder="enter your city"
-            data-translation="city"
-          />
-          <button class="weather__show-btn" data-translation="show-weather">
-            Show weather
-          </button>
-          <div class="weather__wrapper">
-            <i class="weather__icon owf weather__item"></i>
-            <div class="weather__error"></div>
-            <div class="weather__item weather__temperature"></div>
-            <div class="weather__item weather__description"></div>
-            <div class="weather__item weather__wind"></div>
-            <div class="weather__item weather__humidity"></div>
-          </div>
-        </form>
-      </div> -->
     </main>
     <footer class="footer">
-      <button class="change-quote"></button>
       <div class="quote">
-        <span class="quote__text"></span>
-        <span class="quote__author"></span>
+        <button class="quote__btn" aria-label="Click to change quote"></button>
+        <blockquote class="quote__wrapper">
+          <p class="quote__text"></p>
+          <cite class="quote__author"></cite>
+        </blockquote>
       </div>
-      <div class="all-pictures" data-translation="all-pictures">
+      <div class="sources">
         All photos are taken from open sources
       </div>
       <div class="author">This page is created by <a href="https://nataliitaly.github.io/rsschool-cv/" target="_blank">Nataliya Krylova</a></div>
@@ -81,6 +50,5 @@
 
     <script src="js/variables.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/translation.js"></script>
   </body>
 </html>

@@ -2,28 +2,11 @@ const BODY = document.querySelector('body');
 const TIME = document.querySelector('.time');
 const DATE = document.querySelector('.date');
 const VIDEO = document.querySelector('.video');
-const warsDayCount = document.querySelector('.wars-day-count');
-// const nameInput = document.querySelector('.name');
-// const showWeatherBlock = document.querySelector('.weather__btn');
-// const showWeatherBtn = document.querySelector('.weather__show-btn');
-// const weatherWrapper = document.querySelector('.weather');
-// const weather = document.querySelector('.weather__popup');
-// const weatherIcon = document.querySelector('.weather__icon');
-// const temperature = document.querySelector('.weather__temperature');
-// const weatherDescription = document.querySelector('.weather__description');
-// const wind = document.querySelector('.weather__wind');
-// const humidity = document.querySelector('.weather__humidity');
-// const weatherCityInput = document.querySelector('.weather__city');
-// const weatherError = document.querySelector('.weather__error');
+const warsDayCount = document.querySelector('.war__days-count');
 const QUOTE = document.querySelector('.quote__text');
 const AUTHOR = document.querySelector('.quote__author');
-const changeQuote = document.querySelector('.change-quote');
-const playBtn = document.querySelector('.play');
-//const changeLanguageBtn = document.querySelector('.change-language-btn');
-/* const translationBtnWrapper = document.querySelector(
-  '.translation-btn-wrapper'
-);
-const translationBtn = document.querySelectorAll('.translation-btn'); */
+const changeQuote = document.querySelector('.quote__btn');
+const playBtn = document.querySelector('.player__btn');
 
 const quotes = {
   it: [
