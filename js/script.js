@@ -123,10 +123,62 @@ let currentLoop = null; // active interval
 let lastSequenceIndex = -1;
 let executedSequence = new Set();
 let isPlay = false;
+let currentIndex = 0;
 const audio = new Audio();
 audio.src = 'assets/sounds/audio.mp3';
+/*
+function prepareSequence(rawSequence) {
+  return rawSequence.map((item, index) => {
+    if (item.action) return item; // leave it as it is
 
-let sequence = [
+    const { time, duration, totalFrames, folder, transition = null } = item;
+
+    const endTime = time + duration;
+    const frameDurationMs = (duration * 1000) / totalFrames;
+
+    return {
+      time,
+      action: () => {
+        if (transition !== null) {
+          BODY.style.transition = `background ${transition} linear`;
+        }
+        startLoop(frameDurationMs, totalFrames, folder, time, endTime);
+      },
+    };
+  });
+} */
+
+function prepareSequence(rawSequence) {
+  return rawSequence.map((item, i, arr) => {
+    if (item.action) return item;
+
+    const {
+      time,
+      totalFrames,
+      folder,
+      frameDurationMs,
+      transition = null,
+    } = item;
+
+    const endTime =
+      arr[i + 1]?.time !== undefined
+        ? arr[i + 1].time
+        : time + (frameDurationMs * totalFrames) / 1000;
+
+    return {
+      time,
+      action: () => {
+        if (transition !== null) {
+          BODY.style.transition = `background ${transition} linear`;
+        }
+
+        startLoop(frameDurationMs, totalFrames, folder, time, endTime);
+      },
+    };
+  });
+}
+/*
+let rawSequence = [
   {
     time: 0,
     action: () => {
@@ -135,29 +187,29 @@ let sequence = [
       BODY.style.transition = 'background 0s linear';
     },
   },
-  { time: 23.7, action: () => startLoop(1176, 17, 'start1') },
+  { time: 24.7, duration: 18.6, totalFrames: 17, folder: 'start1' },
   {
     time: 42.3,
-    action: () => {
-      BODY.style.transition = 'background 0.6s linear';
-      startLoop(1176, 19, 'start2');
-    },
+    duration: 19.5,
+    totalFrames: 19,
+    folder: 'start2',
+    transition: '0.6s',
   },
   {
     time: 61.8,
-    action: () => {
-      BODY.style.transition = 'background 0s linear';
-      startLoop(588, 13, 'explosion');
-    },
+    duration: 19.2,
+    totalFrames: 13,
+    folder: 'explosion',
+    transition: '0s',
   },
   {
     time: 81.0,
-    action: () => {
-      BODY.style.transition = 'background 0.6s linear';
-      startLoop(1176, 24, 'police');
-    },
+    duration: 18.8,
+    totalFrames: 24,
+    folder: 'police',
+    transition: '0.6s',
   },
-  { time: 99.8, action: () => startLoop(1176, 27, 'start3') },
+  { time: 99.8, duration: 37.8, totalFrames: 27, folder: 'start3' },
   {
     time: 137.6,
     action: () => {
@@ -168,10 +220,10 @@ let sequence = [
   },
   {
     time: 163.7,
-    action: () => {
-      BODY.style.transition = 'background 3.528s linear';
-      startLoop(4702, 14, 'slow');
-    },
+    duration: 67.3,
+    totalFrames: 14,
+    folder: 'slow',
+    transition: '3.528s',
   },
   {
     time: 231.0,
@@ -184,7 +236,71 @@ let sequence = [
       stopLoop();
     },
   },
+]; */
+
+let rawSequence = [
+  {
+    time: 0,
+    action: () => {
+      setBackground('begin');
+      VIDEO.classList.add('video-animated-smoke-clear');
+      BODY.style.transition = 'background 0s linear';
+    },
+  },
+  { time: 24.7, totalFrames: 17, frameDurationMs: 1176, folder: 'start1' },
+  {
+    time: 42.3,
+    totalFrames: 19,
+    frameDurationMs: 1176,
+    folder: 'start2',
+    transition: '0.6s',
+  },
+  {
+    time: 61.8,
+    totalFrames: 13,
+    frameDurationMs: 588,
+    folder: 'explosion',
+    transition: '0s',
+  },
+  {
+    time: 81.0,
+    totalFrames: 24,
+    frameDurationMs: 1176,
+    folder: 'police',
+    transition: '0.6s',
+  },
+  { time: 99.8, totalFrames: 27, frameDurationMs: 1176, folder: 'start3' },
+  {
+    time: 137.6,
+    action: () => {
+      stopLoop();
+      setBackground('piano');
+      VIDEO.classList.add('video-animated-smoke-light');
+    },
+  },
+  {
+    time: 163.7,
+    totalFrames: 14,
+    frameDurationMs: 4702,
+    folder: 'slow',
+    transition: '3.528s',
+  },
+  {
+    time: 231.0,
+    action: () => {
+      VIDEO.classList.remove('video-animated-smoke-light');
+      VIDEO.classList.remove('video-animated-smoke-clear');
+      VIDEO.classList.add('video-animated-smoke-full');
+      setBackground('slow/14');
+      stopLoop();
+    },
+  },
 ];
+
+
+const sequence = prepareSequence(rawSequence);
+console.log(sequence)
+runSequence(sequence)
 
 function animationLoop() {
   if (!isPlay) return;
@@ -193,19 +309,37 @@ function animationLoop() {
 
   for (let i = 0; i < sequence.length; i++) {
     const step = sequence[i];
-    /* if (currentTime >= sequence[i].time) {
-      sequence[i].action();
-      lastSequenceIndex = i;
-    } else {
-      break;
-    } */
+
     if (currentTime >= step.time && !executedSequence.has(i)) {
-      step.action();
-      executedSequence.add(i);
+      if (typeof step.action === 'function') {
+        step.action();
+        executedSequence.add(i);
+      }
+      else {
+        console.warn('Step without action', step)
+      }
     }
   }
 
   requestAnimationFrame(animationLoop);
+}
+
+function runSequence(seq) {
+  function check() {
+    if (currentIndex >= seq.length) return;
+
+    const currentTime = audio.currentTime;
+    const item = seq[currentIndex];
+
+    if (currentTime >= item.time) {
+      item.action();
+      currentIndex++;
+    }
+
+    requestAnimationFrame(() => check());
+  }
+
+  check();
 }
 
 function playAudio() {
@@ -286,20 +420,21 @@ function setBackground(path) {
   loopFrame();
 } */
 
-function startLoop(durationMs, totalFrames, folder, startTime) {
+function startLoop(frameDurationMs, totalFrames, folder, startTimeInAudio, endTimeInAudio) {
   stopLoop();
-
-  const frameDuration = durationMs / totalFrames;
-
-  // Если startTime не передали — берём текущий момент аудио
-  const loopStartTime = startTime ?? audio.currentTime;
 
   function loopFrame() {
     if (!isPlay) return;
 
-    const passed = (audio.currentTime - loopStartTime) * 1000;
+    const currentAudioTime = audio.currentTime;
 
-    let frameIndex = Math.floor(passed / frameDuration) + 1;
+    if (currentAudioTime >= endTimeInAudio) {
+      return;
+    }
+
+    const passedTime = (currentAudioTime - startTimeInAudio) * 1000;
+
+    let frameIndex = Math.floor(passedTime / frameDurationMs) + 1;
     if (frameIndex > totalFrames) {
       frameIndex = totalFrames;
     }
