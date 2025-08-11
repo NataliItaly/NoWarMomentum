@@ -1,14 +1,14 @@
-const BODY = document.querySelector('body');
-const TIME = document.querySelector('.time');
-const DATE = document.querySelector('.date');
-const VIDEO = document.querySelector('.video');
-const warsDayCount = document.querySelector('.war__days-count');
-const QUOTE = document.querySelector('.quote__text');
-const AUTHOR = document.querySelector('.quote__author');
-const changeQuote = document.querySelector('.quote__btn');
-const playBtn = document.querySelector('.player__btn');
+export const BODY = document.querySelector('body');
+export const TIME = document.querySelector('.time');
+export const DATE = document.querySelector('.date');
+export const VIDEO = document.querySelector('.video');
+export const warsDayCount = document.querySelector('.war__days-count');
+export const QUOTE = document.querySelector('.quote__text');
+export const AUTHOR = document.querySelector('.quote__author');
+export const changeQuote = document.querySelector('.quote__btn');
+export const playBtn = document.querySelector('.player__btn');
 
-const quotes = {
+export const quotes = {
   it: [
     {
       text: "La gente pensa che se chiamano il crimine di omicidio 'guerra', allora l'omicidio non è un crimine.",
