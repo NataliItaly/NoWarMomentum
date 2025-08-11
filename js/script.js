@@ -420,8 +420,10 @@ function setBackground(path) {
   loopFrame();
 } */
 
-function startLoop(frameDurationMs, totalFrames, folder, startTimeInAudio, endTimeInAudio) {
+/* function startLoop(frameDurationMs, totalFrames, folder, startTimeInAudio, endTimeInAudio) {
   stopLoop();
+
+  const loopStartTime = startTime;
 
   function loopFrame() {
     if (!isPlay) return;
@@ -440,6 +442,39 @@ function startLoop(frameDurationMs, totalFrames, folder, startTimeInAudio, endTi
     }
 
     setBackground(`${folder}/${frameIndex}`);
+    currentLoop = requestAnimationFrame(loopFrame);
+  }
+
+  loopFrame();
+} */
+
+function startLoop(
+  frameDurationMs,
+  totalFrames,
+  folder,
+  startTime = 0,
+  endTime = Infinity
+) {
+  stopLoop();
+
+  const loopStartTime = startTime;
+
+  function loopFrame() {
+    if (!isPlay) return;
+
+    const passedMs = (audio.currentTime - loopStartTime) * 1000;
+
+    if (audio.currentTime >= endTime) {
+      stopLoop();
+      return;
+    }
+
+    // index loop:
+    const frameIndex =
+      (Math.floor(passedMs / frameDurationMs) % totalFrames) + 1;
+
+    setBackground(`${folder}/${frameIndex}`);
+
     currentLoop = requestAnimationFrame(loopFrame);
   }
 
