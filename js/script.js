@@ -37,11 +37,7 @@ changeQuote.addEventListener('click', setQuotes);
 
 /*------------------ set player -------------------- */
 
-//let executedSequence = new Set();
-//export let isPlay = false;
 let currentIndex = 0;
-//export const audio = new Audio();
-//audio.src = 'assets/sounds/audio.mp3';
 
 
 runSequence(sequence)
