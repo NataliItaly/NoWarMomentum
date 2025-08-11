@@ -9,6 +9,8 @@ export function runSequence(seq) {
     const currentTime = audio.currentTime;
     const item = seq[currentIndex];
 
+    console.log('item = seq[currentIndex]', item);
+
     if (currentTime >= item.time) {
       item.action();
       currentIndex++;

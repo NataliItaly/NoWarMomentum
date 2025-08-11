@@ -15,7 +15,7 @@ import { showTime, showDate, setWarDays } from "./setTime.js";
 import { sequence } from './sequenceData.js';
 import { runSequence } from "./sequenceRunner.js";
 import { startLoop, stopLoop } from './animation.js';
-import { audio, playAudio } from "./player.js";
+import { audio, playAudio } from './player.js';
 import { executedSequence, isPlay } from "./player.js";
 import { setQuotes } from "./setQuote.js";
 
@@ -39,7 +39,7 @@ changeQuote.addEventListener('click', setQuotes);
 
 let currentIndex = 0;
 
-
+console.log('sequence', sequence)
 runSequence(sequence)
 
 export function animationLoop() {
@@ -64,25 +64,8 @@ export function animationLoop() {
   requestAnimationFrame(animationLoop);
 }
 
-/* function runSequence(seq) {
-  function check() {
-    if (currentIndex >= seq.length) return;
 
-    const currentTime = audio.currentTime;
-    const item = seq[currentIndex];
-
-    if (currentTime >= item.time) {
-      item.action();
-      currentIndex++;
-    }
-
-    requestAnimationFrame(() => check());
-  }
-
-  check();
-} */
-/*
-function playAudio() {
+/* function playAudio() {
   if (!isPlay) {
     //audio.currentTime = 0;
     audio.play();
@@ -101,8 +84,8 @@ function playAudio() {
     playBtn.textContent = 'Listen';
     stopLoop();
   }
-}
- */
+} */
+
 
 
 

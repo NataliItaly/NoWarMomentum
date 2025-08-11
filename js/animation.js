@@ -20,7 +20,7 @@ export function startLoop(
   startTime = 0,
   endTime = Infinity
 ) {
-  stopLoop(); // остановить предыдущий цикл, если есть
+  stopLoop();
 
   const loopStartTime = startTime;
 
@@ -35,11 +35,11 @@ export function startLoop(
       return;
     }
 
-    // Получаем индекс кадра (с зацикливанием)
+    // get index of frame
     const frameIndex =
       (Math.floor(passedMs / frameDurationMs) % totalFrames) + 1;
 
-    // Устанавливаем фон
+    // set background
     setBackground(`${folder}/${frameIndex}`);
 
     currentLoop = requestAnimationFrame(loopFrame);
